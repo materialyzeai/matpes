@@ -1,9 +1,0 @@
-numpy==1.26.4
-pymongo==4.11
-gunicorn==23.0.0
-dash==2.18.2
-dash-bootstrap-components==1.6.0
-dash_bootstrap_templates==2.1.0
-plotly==6.0.0
-pymatgen==2025.1.24
--e .
