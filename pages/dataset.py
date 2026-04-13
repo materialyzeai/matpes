@@ -22,72 +22,118 @@ EXAMPLE_CONTENT = (
     """
 #### Example document
 
-The following is a commented version of a single entry in the `MatPES-PBE-2025.1.json.gz` file.
+The following is a commented version of a single entry in the `MatPES-PBE-2025.1.json.gz` file. Note that the 
+`bader_` and `chargemol` keys can be empty for structures where the charge calculations failed for some reason. 
+These are a minority of structures.
 
 ```json
 {
-    "builder_meta": { ... },  // Metadata used by MatPES developers only.
+    "builder_meta": {  // Metadata used by MatPES build pipeline (emmet/pymatgen versions, timestamps).
+        "emmet_version": "0.84.6rc3.dev21+g7a6aab3b",
+        "pymatgen_version": "2025.1.9",
+        "run_id": null,
+        "batch_id": null,
+        "database_version": null,
+        "build_date": "2025-03-20 14:56:02.620203+00:00",
+        "license": null
+    },
 
     "nsites": 2,  // Number of sites in the structure.
-    "elements": ["Ti", "Y"],  // Elements present in the structure.
+    "elements": ["Cd", "Sr"],  // Elements present in the structure.
     "nelements": 2,  // Number of unique elements in the structure.
 
-    "composition": { "Y": 1.0, "Ti": 1.0 },  // Elemental composition as a dictionary.
-    "composition_reduced": { "Y": 1.0, "Ti": 1.0 },  // Reduced/normalized composition.
+    "composition": { "Sr": 1.0, "Cd": 1.0 },  // Elemental composition as a dictionary.
+    "composition_reduced": { "Sr": 1.0, "Cd": 1.0 },  // Reduced/normalized composition.
 
-    "formula_pretty": "YTi",  // Readable chemical formula.
+    "formula_pretty": "SrCd",  // Readable chemical formula.
     "formula_anonymous": "AB",  // Anonymous formula representation.
-    "chemsys": "Ti-Y",  // Chemical system association.
+    "chemsys": "Cd-Sr",  // Chemical system (elements sorted alphabetically, hyphen-separated).
 
-    "volume": 49.25681734779065,  // Structure volume in Å³.
-    "density": 4.6108675489852535,  // Density in g/cm³.
-    "density_atomic": 24.628408673895326,  // Atomic density.
+    "volume": 69.60584595204928,  // Structure volume in ų.
+    "density": 4.772002781547363,  // Density in g/cm³.
+    "density_atomic": 34.80292297602464,  // Atomic density (volume per atom) in ų/atom.
 
-    "symmetry": {  // Crystallographic symmetry information.
-        "crystal_system": "Monoclinic",
-        "symbol": "Pm",
-        "number": 6,
-        "point_group": "m",
+    "symmetry": {  // Crystallographic symmetry information (via spglib).
+        "crystal_system": "Triclinic",
+        "symbol": "P1",
+        "number": 1,
+        "point_group": "1",
         "symprec": 0.1,
         "angle_tolerance": 5.0,
         "version": "2.5.0"
     },
 
-    "structure": { ... },  // Pymatgen serialized structure.
+    "structure": { ... },  // Pymatgen serialized Structure object (lattice, sites, species, coordinates).
 
-    "energy": -13.19442081,  // DFT energy in eV.
+    "energy": -34.92810022,  // DFT total energy in eV.
 
-    "forces": [  // DFT-calculated forces on each atom (eV/Å).
-        [0.43578007, -0.32456562, -0.38019986],
-        [-0.43578007, 0.32456562, 0.38019986]
+    "forces": [  // DFT-calculated forces on each atom (eV/Å), shape (nsites, 3).
+        [0.28135608, 0.39456307, 0.28030103],
+        [-0.28135608, -0.39456307, -0.28030103]
     ],
 
-    "stress": [  // DFT-calculated stress tensor components (kilobar).
-        -5.71186022, -9.34590239, 13.64346365,
-        22.84178803, 23.6719352, 6.22290851
+    "stress": [  // DFT-calculated stress tensor in Voigt notation (kbar): [xx, yy, zz, yz, xz, xy].
+        -3.70051569, 45.57452896, -9.58430813,
+        -0.80624803, 30.26332391, -29.08163294
     ],
 
-    "abs_forces": [  // Magnitude of DFT forces per atom (eV/Å).
-        0.6631734649691654,
-        0.6631734649691654
-    ],
-
-    "matpes_id": "matpes-20240214_999484_73",  // Unique MatPES ID for this structure.
+    "matpes_id": "matpes-20240214_30496_38",  // Unique MatPES identifier for this structure.
 
     "bandgap": 0.0,  // DFT-calculated electronic band gap (eV).
-    "functional": "PBE",  // DFT exchange-correlation functional.
+    "functional": "r2SCAN",  // DFT exchange-correlation functional used.
 
-    "formation_energy_per_atom": 0.5199284258333332,  // Formation energy per atom (eV).
-    "cohesive_energy_per_atom": -4.266150985,  // Cohesive energy per atom (eV).
+    "formation_energy_per_atom": null,  // Formation energy per atom (eV). null if elemental reference energies are unavailable.
+    "cohesive_energy_per_atom": -1.2885743400000003,  // Cohesive energy per atom (eV).
 
-    "provenance": {  // Metadata describing dataset origin and simulation conditions.
-        "original_mp_id": "mp-999484",  // Source ID from the Materials Project.
-        "materials_project_version": "v2022.10.28",
+    "abs_forces": [  // Magnitude of DFT force vector per atom (eV/Å).
+        0.5598302665807309,
+        0.5598302665807309
+    ],
+
+    "bader_charges": [8.867804, 13.132196],  // Bader-partitioned electron counts per atom (e). null if not computed.
+    "bader_magmoms": [-4e-05, -2.4e-05],  // Bader-partitioned magnetic moments per atom (μ_B). null if not computed.
+
+    "cm5_partial_charges": [-0.001647, 0.001647],  // CM5 partial atomic charges per atom (e). Derived from Chargemol.
+
+    "ddec6": {  // DDEC6 (Density Derived Electrostatic and Chemical) charge analysis results.
+        "partial_charges": [0.803751, -0.803751],  // DDEC6 net atomic charges per atom (e).
+        "bond_order_sums": [2.143492, 2.720226],  // Sum of DDEC6 bond orders for each atom.
+        "spin_moments": [-5.4e-05, -1.1e-05],  // DDEC6 atomic spin moments per atom (μ_B).
+        "dipoles": [  // DDEC6 atomic dipole vectors per atom (Debye), shape (nsites, 3).
+            [-0.003428, -0.011809, -0.014139],
+            [0.036623, 0.045952, -0.001567]
+        ],
+        "rsquared_moments": [42.045256, 61.998282],  // DDEC6 ⟨r²⟩ atomic multipole moments per atom (a.u.).
+        "rcubed_moments": [107.916366, 168.708361],  // DDEC6 ⟨r³⟩ atomic multipole moments per atom (a.u.).
+        "rfourth_moments": [368.510161, 601.960932]  // DDEC6 ⟨r⁴⟩ atomic multipole moments per atom (a.u.).
+    },
+
+    "chargemol": {  // Full Chargemol output containing both DDEC and CM5 analyses.
+        "ddec": {  // DDEC6 results (mirrors the top-level "ddec6" block).
+            "partial_charges": [0.803751, -0.803751],
+            "bond_order_sums": [2.143492, 2.720226],
+            "spin_moments": [-5.4e-05, -1.1e-05],
+            "dipoles": [
+                [-0.003428, -0.011809, -0.014139],
+                [0.036623, 0.045952, -0.001567]
+            ],
+            "rsquared_moments": [42.045256, 61.998282],
+            "rcubed_moments": [107.916366, 168.708361],
+            "rfourth_moments": [368.510161, 601.960932]
+        },
+        "cm5": {  // CM5 charge model results.
+            "partial_charges": [-0.001647, 0.001647]  // CM5 partial charges per atom (e).
+        }
+    },
+
+    "provenance": {  // Metadata describing dataset origin and MD simulation conditions.
+        "original_mp_id": "mp-30496",  // Source structure ID from the Materials Project.
+        "materials_project_version": "v2022.10.28",  // Materials Project database version used.
         "md_ensemble": "NpT",  // Molecular dynamics ensemble type.
         "md_temperature": 300.0,  // MD simulation temperature (K).
         "md_pressure": 1.0,  // MD simulation pressure (atm).
-        "md_step": 93,  // MD simulation step number.
-        "mlip_name": "M3GNet-MP-2021.2.8-DIRECT"  // Machine learning potential used.
+        "md_step": 726,  // MD trajectory step number from which this snapshot was extracted.
+        "mlip_name": "M3GNet-MP-2021.2.8-DIRECT"  // MLIP used to drive the MD trajectory.
     }
 }
 ```
