@@ -22,8 +22,8 @@ EXAMPLE_CONTENT = (
     """
 #### Example document
 
-The following is a commented version of a single entry in the `MatPES-PBE-2025.1.json.gz` file. Note that the 
-`bader_` and `chargemol` keys can be empty for structures where the charge calculations failed for some reason. 
+The following is a commented version of a single entry in the `MatPES-PBE-2025.1.json.gz` file. Note that the
+`bader_` and `chargemol` keys can be empty for structures where the charge calculations failed for some reason.
 These are a minority of structures.
 
 ```json
