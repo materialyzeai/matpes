@@ -47,6 +47,10 @@ dependencies = [
     "pymatgen",
     "tqdm",
     "datasets>=3.6.0",
+    "gunicorn>=25.3.0",
+    "dash>=4.1.0",
+    "dash-bootstrap-components>=2.0.4",
+    "dash-bootstrap-templates>=2.1.0",
 ]
 version = "0.0.3"
 
