@@ -7,6 +7,6 @@ Bulk modulus,K_VRH,GPa,PBE,[MP],"3,959"
 Shear modulus,G_VRH,GPa,PBE,[MP],"3,959"
 Constant volume heat capacity,C_V,J/mol/K,PBE,[Alexandria],"1,170"
 Off-equilibrium force,F/F_DFT,--,PBE,[WBMhighenergystates],979
-Median termination temperature,T_1/2^term,K,PBE & r2SCAN,[MVL],172
-Ionic conductivity,sigma,mS/cm,PBE,[MVL],698
-Time per atom per time step,t_step,ms/step/atom,PBE & r2SCAN,[MVL],1
+Median termination temperature,T_1/2^term,K,PBE & r2SCAN,[Materialyze.AI lab],172
+Ionic conductivity,sigma,mS/cm,PBE,[Materialyze.AI lab],698
+Time per atom per time step,t_step,ms/step/atom,PBE & r2SCAN,[Materialyze.AI lab],1

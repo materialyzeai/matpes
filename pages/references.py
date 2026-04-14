@@ -48,7 +48,7 @@ Ong, S. P. Materials Graph Library (MatGL), an open-source graph deep learning l
 chemistry. Submitted.
 ```
 
-[Materials Virtual Lab]: http://materialsvirtuallab.org
+[Materialyze.AI lab]: https://materialyze.ai
 [pymatgen]: https://pymatgen.org
 [Materials Project]: https://materialsproject.org
 [MatGL]: https://matgl.ai

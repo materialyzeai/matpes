@@ -72,7 +72,7 @@ footer_style = {
     "font-size": "0.8rem",
 }
 
-footer = html.Footer(["© ", html.A("Materials Virtual Lab", href="http://materialsvirtuallab.org")], style=footer_style)
+footer = html.Footer(["© ", html.A("Materialyze.AI lab", href="https://materialyze.ai")], style=footer_style)
 
 app.index_string = """<!DOCTYPE html>
 <html>

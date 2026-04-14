@@ -3,7 +3,7 @@
 
 ### Aims
 
-MatPES is an initiative by the [Materials Virtual Lab] and the [Materials Project] to address
+MatPES is an initiative by the [Materialyze.AI lab] and the [Materials Project] to address
 [critical deficiencies](http://matpes.ai/about) in potential energy surface (PES) datasets for materials.
 
 1. **Accuracy.** MatPES is computed using static DFT calculations with stringent converegence criteria.
@@ -84,7 +84,7 @@ Foundational Potential Energy Surface Dataset for Materials. arXiv 2025. DOI: 10
 In addition, if you use any of the pre-trained FPs or architectures, please cite the
 [references provided](http://matgl.ai/references) on the architecture used as well as MatGL.
 
-[Materials Virtual Lab]: http://materialsvirtuallab.org
+[Materialyze.AI lab]: https://materialyze.ai
 [Materials Project]: https://materialsproject.org
 [M3GNet]: http://dx.doi.org/10.1038/s43588-022-00349-3
 [CHGNet]: http://doi.org/10.1038/s42256-023-00716-3

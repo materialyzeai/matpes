@@ -19,8 +19,8 @@ import sys
 from matpes import __file__, __version__
 
 project = "matpes"
-copyright = "2025, Materials Virtual Lab"
-author = "Materials Virtual Lab & Materials Project"
+copyright = "2025, Materialyze.AI lab"
+author = "Materialyze.AI lab & Materials Project"
 
 
 # -- General configuration ---------------------------------------------------

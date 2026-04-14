@@ -9,9 +9,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "matpes"
-authors = [{ name = "MatPES Development Team", email = "ongsp@ucsd.edu" }]
+authors = [{ name = "MatPES Development Team", email = "shyue@nus.edu.sg" }]
 maintainers = [
-    { name = "Shyue Ping Ong", email = "ongsp@ucsd.edu" },
+    { name = "Shyue Ping Ong", email = "shyue@nus.edu.sg" },
 ]
 description = """Tools for working with MatPES."""
 readme = "README.md"

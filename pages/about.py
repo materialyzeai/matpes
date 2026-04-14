@@ -32,7 +32,7 @@ This dataset, referred to as `MPF` or `MPTraj` in the literature, suffer from se
 
 ### Goals
 
-MatPES is an initiative by the [Materials Virtual Lab] and the [Materials Project] to address these limitations
+MatPES is an initiative by the [Materialyze.AI lab] and the [Materials Project] to address these limitations
 comprehensively. The aims of MatPES are three-fold:
 
 1. **Accuracy.** The data in MatPES was computed using static DFT calculations with stringent converegence criteria.
@@ -62,7 +62,7 @@ Aaron Kaplan, Runze Liu, Ji Qi, Tsz Wai Ko, Bowen Deng, Gerbrand Ceder, Kristin 
 A foundational potential energy surface dataset for materials. Submitted.
 ```
 
-[Materials Virtual Lab]: http://materialsvirtuallab.org
+[Materialyze.AI lab]: https://materialyze.ai
 [pymatgen]: https://pymatgen.org
 [Materials Project]: https://materialsproject.org
 [MatGL]: https://matgl.ai

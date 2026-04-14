@@ -40,7 +40,7 @@ comparison, please provide **information about training dataset size, training c
 The easiest way to run the benchmark is to implement an ASE compatible calculator, which can then be used with the
 [MatCalc](https://github.com/materialsvirtuallab/matcalc) package. We will release the equilibrium and
 near-equilibrium benchmark datasets soon in the MatCalc repository together with benchmarking tools. The MD
-benchmarks can only be run by the Materials Virtual Lab.
+benchmarks can only be run by the [Materialyze.AI lab](https://materialyze.ai).
 """
 
 TABLE_NOTE = """
@@ -71,9 +71,9 @@ properties.
 | Constant volume heat capacity | C_V        | J/mol/K      | PBE          | [Alexandria]             | 1,170  |
 | Off-equilibrium force         | F/F_DFT    | --           | PBE          | [WBM high energy states] | 979    |
 | **Molecular dynamics**        |            |              |              |                          |        |
-| Median termination temp       | T_1/2^term | K            | PBE & r2SCAN | [MVL]                    | 172    |
-| Ionic conductivity            | sigma      | mS/cm        | PBE          | [MVL]                    | 698    |
-| Time per atom per step        | t_step     | ms/step/atom | PBE & r2SCAN | [MVL]                    | 1      |
+| Median termination temp       | T_1/2^term | K            | PBE & r2SCAN | [Materialyze.AI lab]     | 172    |
+| Ionic conductivity            | sigma      | mS/cm        | PBE          | [Materialyze.AI lab]     | 698    |
+| Time per atom per step        | t_step     | ms/step/atom | PBE & r2SCAN | [Materialyze.AI lab]     | 1      |
 
 The time per atom per step (t_step) was computed using LAMMPS MD simulations conducted on a single Intel Xeon Gold core
 for a system of 64 Si atoms under ambient conditions (300 K and 1 bar) over 50 ps with a 1 fs time step.
@@ -96,7 +96,7 @@ MPtrj, and OMat24 datasets, summarized below.
 [Alexandria]: https://doi.org/10.48550/arXiv.2412.16551
 [WBM high energy states]: https://doi.org/10.48550/arXiv.2405.07105
 [MP]: http://materialsproject.org
-[MVL]: http://materialsvirtuallab.org
+[Materialyze.AI lab]: https://materialyze.ai
 """
 
 
