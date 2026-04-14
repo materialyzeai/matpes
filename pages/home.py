@@ -14,8 +14,13 @@ dash.register_page(__name__, path="/", order=1)
 
 readme = Path(__file__).parent.absolute() / ".." / "README.md"
 
+versions = Path(__file__).parent.absolute() / ".." / "versions.md"
+
 with open(readme, encoding="utf-8") as f:
     MARKDOWN_CONTENT = f.read()
+
+with open(versions, encoding="utf-8") as f:
+    VERSIONS_CONTENT = f.read()
 
 MARKDOWN_CONTENT = "\n".join(MARKDOWN_CONTENT.split("\n")[2:])
 
@@ -33,7 +38,7 @@ jumbotron = html.Div(
                     [
                         dbc.Button(
                             "PBE",
-                            href=f"{MATPES_SRC}/MatPES-PBE-2025.1.json.gz",
+                            href=f"{MATPES_SRC}/MatPES-PBE-2025.2.json.gz",
                             class_name="me-1 download-button",
                             color="info",
                             external_link=True,
@@ -47,7 +52,7 @@ jumbotron = html.Div(
                         ),
                         dbc.Button(
                             "r2SCAN",
-                            href=f"{MATPES_SRC}/MatPES-R2SCAN-2025.1.json.gz",
+                            href=f"{MATPES_SRC}/MatPES-R2SCAN-2025.2.json.gz",
                             class_name="me-1 download-button",
                             color="success",
                             external_link=True,
@@ -73,6 +78,13 @@ jumbotron = html.Div(
 layout = dbc.Container(
     [
         jumbotron,
+        dbc.Row(
+            html.Div(
+                [html.H3("Versions"), dcc.Markdown(VERSIONS_CONTENT)],
+                id="versions-table-wrap",
+            ),
+            className="mt-4",
+        ),
         dbc.Row(
             html.Div([dcc.Markdown(MARKDOWN_CONTENT)]),
             className="mt-4",

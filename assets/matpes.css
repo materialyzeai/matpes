@@ -67,3 +67,14 @@
 
 
 img[alt=matpes_workflow] { width: 100%; }
+
+
+#versions-table-wrap th,
+#versions-table-wrap td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+#versions-table-wrap table {
+  border-collapse: collapse;
+}

@@ -5,10 +5,11 @@ from __future__ import annotations
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
+from matpes import MATPES_SRC
 
 dash.register_page(__name__, path="/about", order=6)
 
-MARKDOWN_CONTENT = """
+MARKDOWN_CONTENT = f"""
 ### Background
 
 Machine learning interatomic potentials (MLIPs) have revolutionized the field of computational materials science.
@@ -44,7 +45,7 @@ comprehensively. The aims of MatPES are three-fold:
    (r2SCAN) meta-GGA functional. The r2SCAN functional recovers all 17 exact constraints presently known for
    meta-GGA functionals and has shown good transferable accuracy across diverse bonding and chemistries.
 
-The workflow used to generate the MatPES dataset is shown below. The initial v2025.1 release comprises ~400,000
+The workflow used to generate the MatPES dataset is shown below. The initial v2025 release comprises ~400,000
 structures from 300K MD simulations and Materials Project ground state calculations. This dataset is much smaller
 than other PES datasets in the literature and yet achieves essentially comparable or, in some cases, improved
 performance and reliability. The [MatPES.ai] website provides a comprehensive analysis of the

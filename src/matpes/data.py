@@ -13,7 +13,7 @@ REPO_ID = "mavrl/matpes"
 
 def get_data(
     functional: Literal["PBE", "R2SCAN"] = "PBE",
-    version: str = "2025.1",
+    version: str = "2025.2",
     return_data: bool = True,
     download_atoms: bool = False,
 ) -> tuple[list[dict], list[dict]] | list[dict] | None:
