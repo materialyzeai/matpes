@@ -79,13 +79,6 @@ layout = dbc.Container(
     [
         jumbotron,
         dbc.Row(
-            html.Div(
-                [html.H3("Versions"), dcc.Markdown(VERSIONS_CONTENT)],
-                id="versions-table-wrap",
-            ),
-            className="mt-4",
-        ),
-        dbc.Row(
             html.Div([dcc.Markdown(MARKDOWN_CONTENT)]),
             className="mt-4",
         ),
