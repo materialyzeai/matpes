@@ -29,13 +29,7 @@ These are a minority of structures.
 ```json
 {
     "builder_meta": {  // Metadata used by MatPES build pipeline (emmet/pymatgen versions, timestamps).
-        "emmet_version": "0.84.6rc3.dev21+g7a6aab3b",
-        "pymatgen_version": "2025.1.9",
-        "run_id": null,
-        "batch_id": null,
-        "database_version": null,
-        "build_date": "2025-03-20 14:56:02.620203+00:00",
-        "license": null
+        ...
     },
 
     "nsites": 2,  // Number of sites in the structure.
@@ -82,7 +76,7 @@ These are a minority of structures.
     "bandgap": 0.0,  // DFT-calculated electronic band gap (eV).
     "functional": "r2SCAN",  // DFT exchange-correlation functional used.
 
-    "formation_energy_per_atom": null,  // Formation energy per atom (eV). null if elemental reference energies are unavailable.
+    "formation_energy_per_atom": null,  // Formation energy per atom (eV). null if structure is not a relaxed ground state.
     "cohesive_energy_per_atom": -1.2885743400000003,  // Cohesive energy per atom (eV).
 
     "abs_forces": [  // Magnitude of DFT force vector per atom (eV/Å).
