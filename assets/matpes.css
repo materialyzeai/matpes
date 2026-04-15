@@ -68,6 +68,10 @@
 
 img[alt=matpes_workflow] { width: 100%; }
 
+#versions-table table {
+  margin-bottom: 1rem;
+  width: 100%;
+}
 
 #versions-table th,
 #versions-table td {

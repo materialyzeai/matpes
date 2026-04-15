@@ -23,7 +23,7 @@ EXAMPLE_CONTENT = (
 #### Example document
 
 The following is a commented version of a single entry in the `MatPES-PBE-2025.1.json.gz` file. Note that the 
-`bader_` and `chargemol` keys can be empty for structures where the charge calculations failed for some reason. 
+`bader_`, `cm5_partial_charges and `ddec6` keys are None for structures where the charge calculations failed for some reason. 
 These are a minority of structures.
 
 ```json
@@ -93,9 +93,9 @@ These are a minority of structures.
     "bader_charges": [8.867804, 13.132196],  // Bader-partitioned electron counts per atom (e). null if not computed.
     "bader_magmoms": [-4e-05, -2.4e-05],  // Bader-partitioned magnetic moments per atom (μ_B). null if not computed.
 
-    "cm5_partial_charges": [-0.001647, 0.001647],  // CM5 partial atomic charges per atom (e). Derived from Chargemol.
+    "cm5_partial_charges": [-0.001647, 0.001647],  // CM5 partial atomic charges per atom (e), from Chargemol.
 
-    "ddec6": {  // DDEC6 (Density Derived Electrostatic and Chemical) charge analysis results.
+    "ddec6": {  // DDEC6 (Density Derived Electrostatic and Chemical) charge analysis results from Chargemol.
         "partial_charges": [0.803751, -0.803751],  // DDEC6 net atomic charges per atom (e).
         "bond_order_sums": [2.143492, 2.720226],  // Sum of DDEC6 bond orders for each atom.
         "spin_moments": [-5.4e-05, -1.1e-05],  // DDEC6 atomic spin moments per atom (μ_B).
@@ -106,24 +106,6 @@ These are a minority of structures.
         "rsquared_moments": [42.045256, 61.998282],  // DDEC6 ⟨r²⟩ atomic multipole moments per atom (a.u.).
         "rcubed_moments": [107.916366, 168.708361],  // DDEC6 ⟨r³⟩ atomic multipole moments per atom (a.u.).
         "rfourth_moments": [368.510161, 601.960932]  // DDEC6 ⟨r⁴⟩ atomic multipole moments per atom (a.u.).
-    },
-
-    "chargemol": {  // Full Chargemol output containing both DDEC and CM5 analyses.
-        "ddec": {  // DDEC6 results (mirrors the top-level "ddec6" block).
-            "partial_charges": [0.803751, -0.803751],
-            "bond_order_sums": [2.143492, 2.720226],
-            "spin_moments": [-5.4e-05, -1.1e-05],
-            "dipoles": [
-                [-0.003428, -0.011809, -0.014139],
-                [0.036623, 0.045952, -0.001567]
-            ],
-            "rsquared_moments": [42.045256, 61.998282],
-            "rcubed_moments": [107.916366, 168.708361],
-            "rfourth_moments": [368.510161, 601.960932]
-        },
-        "cm5": {  // CM5 charge model results.
-            "partial_charges": [-0.001647, 0.001647]  // CM5 partial charges per atom (e).
-        }
     },
 
     "provenance": {  // Metadata describing dataset origin and MD simulation conditions.
