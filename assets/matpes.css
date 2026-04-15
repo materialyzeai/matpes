@@ -69,12 +69,12 @@
 img[alt=matpes_workflow] { width: 100%; }
 
 
-#versions-table-wrap th,
-#versions-table-wrap td {
+#versions-table th,
+#versions-table td {
   border: 1px solid black;
   padding: 8px;
 }
 
-#versions-table-wrap table {
+#versions-table table {
   border-collapse: collapse;
 }

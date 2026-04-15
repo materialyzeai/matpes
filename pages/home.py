@@ -14,13 +14,8 @@ dash.register_page(__name__, path="/", order=1)
 
 readme = Path(__file__).parent.absolute() / ".." / "README.md"
 
-versions = Path(__file__).parent.absolute() / ".." / "versions.md"
-
 with open(readme, encoding="utf-8") as f:
     MARKDOWN_CONTENT = f.read()
-
-with open(versions, encoding="utf-8") as f:
-    VERSIONS_CONTENT = f.read()
 
 MARKDOWN_CONTENT = "\n".join(MARKDOWN_CONTENT.split("\n")[2:])
 
@@ -79,7 +74,7 @@ layout = dbc.Container(
     [
         jumbotron,
         dbc.Row(
-            html.Div([dcc.Markdown(MARKDOWN_CONTENT)]),
+            html.Div([dcc.Markdown(MARKDOWN_CONTENT, id="versions-table")]),
             className="mt-4",
         ),
     ]
