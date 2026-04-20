@@ -33,7 +33,7 @@ jumbotron = html.Div(
                     [
                         dbc.Button(
                             "PBE",
-                            href=f"{MATPES_SRC}/MatPES-PBE-2025.2-charges.json",
+                            href=f"{MATPES_SRC}/MatPES-PBE-2025.2-charges.json?download=true",
                             class_name="me-1 download-button",
                             color="info",
                             external_link=True,
@@ -47,7 +47,7 @@ jumbotron = html.Div(
                         ),
                         dbc.Button(
                             "r2SCAN",
-                            href=f"{MATPES_SRC}/MatPES-R2SCAN-2025.2-charges.json",
+                            href=f"{MATPES_SRC}/MatPES-R2SCAN-2025.2-charges.json?download=true",
                             class_name="me-1 download-button",
                             color="success",
                             external_link=True,
