@@ -33,7 +33,7 @@ jumbotron = html.Div(
                     [
                         dbc.Button(
                             "PBE",
-                            href=f"{MATPES_SRC}/MatPES-PBE-2025.2.json.gz",
+                            href=f"{MATPES_SRC}/MatPES-PBE-2025.2-charges.json",
                             class_name="me-1 download-button",
                             color="info",
                             external_link=True,
@@ -41,13 +41,13 @@ jumbotron = html.Div(
                             id="pbe-download-button",
                         ),
                         dbc.Tooltip(
-                            "Download PBE dataset (434,712 structures)",
+                            "Download PBE dataset",
                             target="pbe-download-button",
                             placement="bottom",
                         ),
                         dbc.Button(
                             "r2SCAN",
-                            href=f"{MATPES_SRC}/MatPES-R2SCAN-2025.2.json.gz",
+                            href=f"{MATPES_SRC}/MatPES-R2SCAN-2025.2-charges.json",
                             class_name="me-1 download-button",
                             color="success",
                             external_link=True,
@@ -55,7 +55,7 @@ jumbotron = html.Div(
                             id="r2scan-download-button",
                         ),
                         dbc.Tooltip(
-                            "Download r2SCAN dataset (387,897 structures)",
+                            "Download r2SCAN dataset",
                             target="r2scan-download-button",
                             placement="bottom",
                         ),
