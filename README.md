@@ -33,18 +33,27 @@ Calculator).
 
 ### Getting the DataSet
 
-#### Hugging Face
+#### Hugging Face (Recommended)
 
-The MatPES dataset is available on [Hugging Face](https://huggingface.co/datasets/mavrl/matpes). You can use the
+The MatPES dataset is available on [Hugging Face](https://huggingface.co/datasets/materialyze/matpes). You can use the
 `datasets` package to download it.
 
 ```python
 from datasets import load_dataset
 
-load_dataset("mavrl/matpes", "pbe")
+load_dataset("materialyze/matpes", "pbe")
 
-load_dataset("mavrl/matpes", "r2scan")
+load_dataset("materialyze/matpes", "r2scan")
 ```
+
+Without any version specifiers, the latest version of each dataset will be returned. 
+
+If you wish to download a specific version, please add a `-<version>` specifier. For example:
+
+```python
+load_dataset("materialyze/matpes", "r2scan-2025.1")
+```
+
 
 #### MatPES Package
 
