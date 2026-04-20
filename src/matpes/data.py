@@ -8,7 +8,7 @@ from typing import Literal
 
 from huggingface_hub import hf_hub_download
 
-REPO_ID = "mavrl/matpes"
+REPO_ID = "materialyze/matpes"
 
 
 def get_data(
@@ -42,12 +42,12 @@ def get_data(
         None
     """
     data_path = hf_hub_download(
-        repo_id=REPO_ID, filename=f"MatPES-{functional.upper()}-{version}.json.gz", repo_type="dataset"
+        repo_id=REPO_ID, filename=f"MatPES-{functional.upper()}-{version}.json", repo_type="dataset"
     )
     atoms_path = ""
     if download_atoms:
         atoms_path = hf_hub_download(
-            repo_id=REPO_ID, filename=f"MatPES-{functional.upper()}-atoms.json.gz", repo_type="dataset"
+            repo_id=REPO_ID, filename=f"MatPES-{functional.upper()}-atoms.json", repo_type="dataset"
         )
 
     if not return_data:
