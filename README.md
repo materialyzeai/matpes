@@ -93,10 +93,8 @@ These FPs can be used easily with the [MatCalc] package to rapidly compute prope
 
 ```python
 from matcalc.elasticity import ElasticityCalc
-from matgl.ext.ase import PESCalculator
 
-ase_calc = PESCalculator(potential)
-calculator = ElasticityCalc(ase_calc)
+calculator = ElasticityCalc("TensorNet-MatPES-PBE-v2025.1-PES")
 calculator.calc(structure)
 ```
 
