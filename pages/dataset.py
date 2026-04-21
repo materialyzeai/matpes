@@ -11,7 +11,7 @@ from matpes import MATPES_SRC
 dash.register_page(__name__, path="/dataset", order=4)
 
 INTRO_CONTENT = f"""
-#### Introduction
+### Introduction
 
 Each MatPES dataset is provided as a gzipped file in the Javascript object notation (JSON) format. For example, the
 `MatPES-PBE-2025.1.json.gz` file contains a list of structures with PES (energy, force, stresses) and associated
@@ -20,7 +20,7 @@ atomic energies computed with the same  settings are also available. """
 
 EXAMPLE_CONTENT = (
     """
-#### Example document
+### Example document
 
 The following is a commented version of a single entry in the `MatPES-PBE-2025.1.json.gz` file. Note that the 
 `bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for some reason. 
