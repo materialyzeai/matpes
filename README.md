@@ -7,8 +7,7 @@
 |---------|------|-------------|----------|
 | 2025.2 | 15 Apr 2026 | Addition of Bader and DDEC6 charges; removed a small number of duplicated structures. | [PBE](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-PBE-2025.2-charges.json?download=true), [r2SCAN](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.2-charges.json?download=true) |
 | 2025.1 | 6 Mar 2025 | Initial release (~400k structures) | [PBE](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-PBE-2025.1-charges.json?download=true), [r2SCAN](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.1-charges.json?download=true) |
-| N.A. | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-PBE-atoms.json?download=true), [r2SCAN](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-R2SCAN-atoms.json?download=true) |
-
+| - | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-PBE-atoms.json?download=true), [r2SCAN](https://huggingface.co/datasets/Materialyze/matpes/resolve/main/MatPES-R2SCAN-atoms.json?download=true) |
 
 ### Aims
 
@@ -55,7 +54,6 @@ If you wish to download a specific version, please add a `-<version>` specifier.
 load_dataset("materialyze/matpes", "r2scan-2025.1")
 ```
 
-
 #### MatPES Package
 
 The `matpes` python package, which provides tools for working with the MatPES datasets, can be installed via pip:
@@ -70,10 +68,10 @@ Some command line usage examples:
 # Download the PBE dataset to the current directory
 matpes download pbe
 
-# You should see a MatPES-PBE-20240214.json.gz file in your directory.
+# You should see a MatPES-PBE-2025.2.json file in your directory.
 
 # Extract all entries in the Fe-O chemical system
-matpes data -i MatPES-PBE-20240214.json.gz --chemsys Fe-O -o Fe-O.json.gz
+matpes data -i MatPES-PBE-2025.2.json --chemsys Fe-O -o Fe-O.json.gz
 ```
 
 The `matpes.db` module provides functionality to create your own MongoDB database with the MatPES downloaded data,
