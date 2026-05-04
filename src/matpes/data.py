@@ -28,7 +28,7 @@ def get_data(
     Parameters:
         functional (Literal["PBE", "R2SCAN"]): The functional type specifying the
             dataset to retrieve. Defaults to "PBE".
-        version (str): The version of the dataset to retrieve. Defaults to "2025.1".
+        version (str): The version of the dataset to retrieve. Defaults to "2025.2".
         download_atoms (bool): Whether to download and include atomic data in
             the output. Defaults to False.
 

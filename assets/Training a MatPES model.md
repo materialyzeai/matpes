@@ -1,6 +1,6 @@
 # Introduction
 
-This notebook demonstrates the fitting of a TensorNet FP using the MatPES v2025.1 PBE dataset. Fitting of other architectures in MatGL with either the PBE or r2SCAN datasets is similar.
+This notebook demonstrates the fitting of a TensorNet FP using the MatPES 2025.2 PBE dataset. Fitting of other architectures in MatGL with either the PBE or r2SCAN datasets is similar.
 
 **Important Note**: The training data sizes and maximum number of epochs chosen in the notebook are deliberately small so that the notebook will run within a reasonably short amount of time on a single CPU (~5-10 mins) for demonstration purposes. **The resulting model is not expected to be production quality**. When properly training a model, use the entire dataset with a much greater number of epochs.
 

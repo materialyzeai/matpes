@@ -23,8 +23,9 @@ for materials. MatPES is an initiative by the [Materialyze.AI lab] and the [Mate
 3. **Quality.** MatPES includes computed data from the PBE functional, as well as the high fidelity r2SCAN meta-GGA
    functional with improved description across diverse bonding and chemistries.
 
-The initial v2025.1 release comprises ~400,000 structures from 300K MD simulations. This dataset is much smaller
-than other PES datasets in the literature and yet achieves comparable or, in some cases,
+MatPES 2025.2 is the latest public release; it extends the initial 2025.1 release (~400,000 structures from 300 K MD
+simulations) with Bader and DDEC6 atomic charges and removal of duplicated structures. The dataset remains much
+smaller than other PES datasets in the literature and yet achieves comparable or, in some cases,
 [improved performance and reliability](http://matpes.ai/benchmarks) on trained FPs.
 
 MatPES is part of the MatML ecosystem, which also includes [MatGL] (Materials Graph Library), [maml] (MAterials
@@ -50,7 +51,7 @@ Without any version specifiers, the latest version of each dataset will be retur
 To download a specific version, append a `-<version>` specifier. For example:
 
 ```python
-load_dataset("materialyze/matpes", "r2scan-2025.1")
+load_dataset("materialyze/matpes", "r2scan-2025.2")
 ```
 
 #### MatPES Package
@@ -78,13 +79,13 @@ which is extremely useful if you plan to work with the data (e.g., querying, add
 ### MatPES-trained Models
 
 We have released a set of MatPES-trained foundation potentials (FPs) in the [M3GNet], [CHGNet], and [TensorNet]
-architectures in the [MatGL] package. For example, you can load the TensorNet FP trained on MatPES PBE 2025.1 as
+architectures in the [MatGL] package. For example, you can load the TensorNet FP trained on MatPES PBE 2025.2 as
 follows:
 
 ```python
 import matgl
 
-potential = matgl.load_model("TensorNet-MatPES-PBE-v2025.1-PES")
+potential = matgl.load_model("TensorNet-MatPES-PBE-v2025.2-PES")
 ```
 
 Model names follow the format `<architecture>-<dataset>-<dataset-version>-PES`.
@@ -94,7 +95,7 @@ These FPs can be used easily with the [MatCalc] package to rapidly compute prope
 ```python
 from matcalc.elasticity import ElasticityCalc
 
-calculator = ElasticityCalc("TensorNet-MatPES-PBE-v2025.1-PES")
+calculator = ElasticityCalc("TensorNet-MatPES-PBE-v2025.2-PES")
 calculator.calc(structure)
 ```
 

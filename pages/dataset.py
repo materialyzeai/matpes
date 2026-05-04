@@ -13,8 +13,8 @@ dash.register_page(__name__, path="/dataset", order=4)
 INTRO_CONTENT = f"""
 ### Introduction
 
-Each MatPES dataset is provided as a gzipped file in the Javascript object notation (JSON) format. For example, the
-`MatPES-PBE-2025.1.json.gz` file contains a list of structures with PES (energy, force, stresses) and associated
+Each MatPES dataset is provided as a JSON file (optionally gzip-compressed locally). For example, the
+`MatPES-PBE-2025.2.json` file contains a list of structures with PES (energy, force, stresses) and associated
 metadata. The [PBE]({MATPES_SRC}/MatPES-PBE-atoms.json) and [r2SCAN]({MATPES_SRC}/MatPES-R2SCAN-atoms.json)
 atomic energies computed with the same  settings are also available. """
 
@@ -22,7 +22,7 @@ EXAMPLE_CONTENT = (
     """
 ### Example document
 
-The following is a commented version of a single entry in the `MatPES-PBE-2025.1.json.gz` file. Note that the 
+The following is a commented version of a single entry in the `MatPES-PBE-2025.2.json` file. Note that the 
 `bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for some reason. 
 These are a minority of structures.
 
@@ -71,7 +71,7 @@ These are a minority of structures.
         -0.80624803, 30.26332391, -29.08163294
     ],
 
-    "matpes_id": "matpes-20240214_30496_38",  // Unique MatPES identifier for this structure.
+    "matpes_id": "matpes-2025.2_30496_38",  // Unique MatPES identifier for this structure.
 
     "bandgap": 0.0,  // DFT-calculated electronic band gap (eV).
     "functional": "r2SCAN",  // DFT exchange-correlation functional used.
@@ -126,7 +126,7 @@ You can then use the following code to split the dataset into train, validation,
 from monty.serialization import loadfn
 import json
 
-pbe = loadfn("MatPES-PBE-2025.1.json.gz")
+pbe = loadfn("MatPES-PBE-2025.2.json")
 splits = loadfn("MatPES-PBE-split.json.gz")
 
 train_set = []
