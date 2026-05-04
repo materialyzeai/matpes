@@ -6,7 +6,7 @@ from matcalc.elasticity import ElasticityCalc
 from matgl.ext.ase import PESCalculator
 from pymatgen.ext.matproj import MPRester
 
-potential = matgl.load_model("TensorNet-MatPES-PBE-v2025.2-PES")
+potential = matgl.load_model("TensorNet-PES-MatPES-PBE-2025.2")
 ase_calc = PESCalculator(potential)
 calculator = ElasticityCalc(ase_calc)
 ```

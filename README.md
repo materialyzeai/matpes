@@ -85,7 +85,7 @@ follows:
 ```python
 import matgl
 
-potential = matgl.load_model("TensorNet-MatPES-PBE-v2025.2-PES")
+potential = matgl.load_model("TensorNet-PES-MatPES-PBE-2025.2")
 ```
 
 Model names follow the format `<architecture>-<dataset>-<dataset-version>-PES`.
@@ -95,7 +95,7 @@ These FPs can be used easily with the [MatCalc] package to rapidly compute prope
 ```python
 from matcalc.elasticity import ElasticityCalc
 
-calculator = ElasticityCalc("TensorNet-MatPES-PBE-v2025.2-PES")
+calculator = ElasticityCalc("TensorNet-PES-MatPES-PBE-2025.2")
 calculator.calc(structure)
 ```
 

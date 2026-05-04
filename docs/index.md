@@ -54,7 +54,7 @@ MatPES PBE 2025.2 as follows:
 ```python
 import matgl
 
-potential = matgl.load_model("TensorNet-MatPES-PBE-v2025.2-PES")
+potential = matgl.load_model("TensorNet-PES-MatPES-PBE-2025.2")
 ```
 
 These FPs can be used easily with the [MatCalc] package to rapidly compute properties. For example:

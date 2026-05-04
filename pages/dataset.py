@@ -71,7 +71,7 @@ These are a minority of structures.
         -0.80624803, 30.26332391, -29.08163294
     ],
 
-    "matpes_id": "matpes-2025.2_30496_38",  // Unique MatPES identifier for this structure.
+    "matpes_id": "matpes-20240214_30496_38",  // Unique MatPES identifier for this structure.
 
     "bandgap": 0.0,  // DFT-calculated electronic band gap (eV).
     "functional": "r2SCAN",  // DFT exchange-correlation functional used.
