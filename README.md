@@ -88,7 +88,7 @@ import matgl
 potential = matgl.load_model("TensorNet-PES-MatPES-PBE-2025.2")
 ```
 
-Model names follow the format `<architecture>-<dataset>-<dataset-version>-PES`.
+Model names follow the format `<architecture>-PES-<dataset>-<dataset-version>`.
 
 These FPs can be used easily with the [MatCalc] package to rapidly compute properties. For example:
 
