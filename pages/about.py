@@ -5,11 +5,10 @@ from __future__ import annotations
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
-from matpes import MATPES_SRC
 
 dash.register_page(__name__, path="/about", order=6)
 
-MARKDOWN_CONTENT = f"""
+MARKDOWN_CONTENT = """
 ### Background
 
 Machine learning interatomic potentials (MLIPs) have revolutionized the field of computational materials science.
