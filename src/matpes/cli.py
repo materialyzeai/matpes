@@ -46,7 +46,7 @@ def get_data_subset(args):
     """
     Filter MatPES data by chemical system or formula.
 
-    This function processes a given JSON file containing MatPES data and filters
+    This function processes a given JSONL file containing MatPES data and filters
     the entries based on chemical systems or formulas specified by the user.
     The filtered results are then written to an output file.
 
@@ -58,7 +58,7 @@ def get_data_subset(args):
                     the first entry is used).
                 - outfile: str
                     Name of the output file to write the filtered results to.
-                    Defaults to 'filtered.json.gz'.
+                    Defaults to 'filtered.jsonl'.
                 - chemsys: List[str]
                     List of chemical systems (e.g., 'Li-Fe-O') to filter by.
                     If empty, no filtering by chemical system is applied.
@@ -73,13 +73,13 @@ def get_data_subset(args):
         - The chemical system string should follow the format 'Element1-Element2-...'.
         - Formulas are case-insensitive and automatically converted to their
           reduced forms for comparison.
-        - The input file must be a JSON file and the output is written in
-          compressed JSON format.
+        - The input and output are JSONL files, i.e., one JSON record per line.
+          ``zopen`` transparently handles gzip-compressed variants by extension.
     """
     infname = args.filename[0]
     outfname = args.outfile
     with zopen(infname, "rt", encoding="utf-8") as f:
-        data = json.load(f)
+        data = [json.loads(line) for line in f if line.strip()]
     print(f"Total number of entries: {len(data)}.")
     if args.chemsys:
         for c in args.chemsys:
@@ -90,7 +90,9 @@ def get_data_subset(args):
             f = Composition(f).reduced_formula
             data = [d for d in data if d["formula_pretty"] == f]
     with zopen(outfname, "wt", encoding="utf-8") as f:
-        json.dump(data, f)
+        for d in data:
+            f.write(json.dumps(d))
+            f.write("\n")
     print(f"{len(data)} filtered entries written in {outfname}.")
 
 
@@ -142,8 +144,8 @@ def main():
         dest="outfile",
         type=str,
         nargs="?",
-        default="filtered.json.gz",
-        help="File to write filtered entries to.",
+        default="filtered.jsonl",
+        help="File to write filtered entries to (JSONL; use a .gz suffix to gzip-compress).",
     )
 
     subparser_data.add_argument(

@@ -36,10 +36,10 @@ Some command line usage examples:
 # Download the PBE dataset to the current directory
 matpes download pbe
 
-# You should see a MatPES-PBE-2025.2.json file in your directory.
+# You should see a MatPES-PBE-2025.2.jsonl file in your directory.
 
 # Extract all entries in the Fe-O chemical system
-matpes data -i MatPES-PBE-2025.2.json --chemsys Fe-O -o Fe-O.json.gz
+matpes data -i MatPES-PBE-2025.2.jsonl --chemsys Fe-O -o Fe-O.jsonl
 ```
 
 The `matpes.db` module provides functionality to create your own MongoDB database with the MatPES downloaded data,

@@ -13,16 +13,18 @@ dash.register_page(__name__, path="/dataset", order=4)
 INTRO_CONTENT = f"""
 ### Introduction
 
-Each MatPES dataset is provided as a JSON file (optionally gzip-compressed locally). For example, the
-`MatPES-PBE-2025.2.json` file contains a list of structures with PES (energy, force, stresses) and associated
-metadata. The [PBE]({MATPES_SRC}/MatPES-PBE-atoms.json) and [r2SCAN]({MATPES_SRC}/MatPES-R2SCAN-atoms.json)
-atomic energies computed with the same  settings are also available. """
+Each MatPES dataset is provided as a [JSONL](https://jsonlines.org/) file, i.e., one JSON record per line. For
+example, the `MatPES-PBE-2025.2.jsonl` file contains one structure per line, with PES (energy, force, stresses)
+and associated metadata. JSONL lets you stream the dataset line by line rather than parsing the entire file into
+memory at once, and is consumed natively by `datasets.load_dataset`. The
+[PBE]({MATPES_SRC}/MatPES-PBE-atoms.jsonl) and [r2SCAN]({MATPES_SRC}/MatPES-R2SCAN-atoms.jsonl) atomic energies
+computed with the same settings are also available. """
 
 EXAMPLE_CONTENT = (
     """
 ### Example document
 
-The following is a commented version of a single entry in the `MatPES-PBE-2025.2.json` file. Note that the
+The following is a commented version of a single line (one record) in the `MatPES-PBE-2025.2.jsonl` file. Note that the
 `bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for some reason.
 These are a minority of structures.
 
@@ -126,7 +128,11 @@ You can then use the following code to split the dataset into train, validation,
 from monty.serialization import loadfn
 import json
 
-pbe = loadfn("MatPES-PBE-2025.2.json")
+# The dataset is JSONL (one record per line); read it line by line.
+with open("MatPES-PBE-2025.2.jsonl", encoding="utf-8") as f:
+    pbe = [json.loads(line) for line in f]
+
+# The split-index file is a plain JSON mapping and is loaded with loadfn.
 splits = loadfn("MatPES-PBE-split.json.gz")
 
 train_set = []
