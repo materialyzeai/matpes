@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import collections
+import functools
 import itertools
 import json
 from pathlib import Path
@@ -151,6 +152,22 @@ def display_data(
             - data table.
     """
     chemsys = validate_chemsys(chemsys_filter)
+    return list(_build_outputs(functional, chemsys))
+
+
+@functools.lru_cache(maxsize=512)
+def _build_outputs(functional: str, chemsys: str | None) -> tuple:
+    """
+    Build the explorer outputs for a functional and (validated) chemical system. The underlying dataset is static, so
+    results are cached to avoid repeated DB queries and figure construction.
+
+    Args:
+        functional (str): The functional (e.g., "PBE", "r2SCAN").
+        chemsys (str | None): Normalized chemical system, or None for whole-dataset statistics.
+
+    Returns:
+        tuple: Outputs for the display_data callback.
+    """
     df = None
     if chemsys:
         df = get_data(
@@ -250,7 +267,7 @@ def display_data(
         )
     else:
         output.append("")
-    return output
+    return tuple(output)
 
 
 # Define app layout
@@ -276,6 +293,8 @@ layout = dbc.Container(
                         dcc.Input(
                             id="chemsys_filter",
                             placeholder="e.g., Li-Fe-O",
+                            # Avoid a DB query on every keystroke while still filtering as the user types.
+                            debounce=0.5,
                         ),
                     ],
                     width=2,

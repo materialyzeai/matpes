@@ -2,12 +2,23 @@
 
 from __future__ import annotations
 
+import functools
 import os
 
 import pandas as pd
 from pymongo import MongoClient
 
 from .data import get_data
+
+
+@functools.cache
+def _get_client(host: str, username: str | None, password: str | None) -> MongoClient:
+    """Return a cached MongoClient.
+
+    MongoClient is thread-safe and pools connections, so reusing it avoids paying the connection and authentication
+    cost on every query.
+    """
+    return MongoClient(host=host, username=username, password=password, authSource="admin")
 
 
 class MatPESDB:
@@ -20,11 +31,10 @@ class MatPESDB:
         Args:
             dbname (str): The name of the MatPES DB.
         """
-        client = MongoClient(
-            host=os.environ.get("MATPES_HOST", "127.0.0.1"),
-            username=os.environ.get("MATPES_USERNAME"),
-            password=os.environ.get("MATPES_PASSWORD"),
-            authSource="admin",
+        client = _get_client(
+            os.environ.get("MATPES_HOST", "127.0.0.1"),
+            os.environ.get("MATPES_USERNAME"),
+            os.environ.get("MATPES_PASSWORD"),
         )
         self.db = client.get_database(dbname)
 
@@ -102,9 +112,7 @@ class MatPESDB:
             "nelements",
             "bandgap",
         ]
-        return pd.DataFrame(
-            collection.find(
-                criteria,
-                projection=projection,
-            )
-        )[projection]
+        # A large batch size minimizes round trips to a remote DB. Passing columns ensures an empty result still
+        # yields a DataFrame with the expected columns.
+        docs = list(collection.find(criteria, projection=projection, batch_size=10000))
+        return pd.DataFrame(docs, columns=projection)

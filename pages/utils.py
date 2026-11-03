@@ -116,47 +116,40 @@ def pt_heatmap(
     Returns:
         plotly.graph_objects.Figure: A scatter plot representing the heatmap.
     """
-    df = get_pt_df(include_artificial=include_artificial)
-    df[label] = df["symbol"].map(values) if values else df["X"]
+    df = get_pt_df(include_artificial=include_artificial).copy()
+    df[label] = df["symbol"].map(values) if values is not None else df["X"]
     if log:
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", category=RuntimeWarning)
             df[f"log10_{label}"] = np.log10(df[label])
 
-    # Initialize periodic table grid
-    grid = np.full((9, 18), None, dtype=np.float64)
-    label_texts = np.full((9, 18), "", dtype=object)
+    rows, cols = df["period"].to_numpy() - 1, df["group"].to_numpy() - 1
+
+    # Initialize periodic table grid. Period 9 holds the actinoids.
+    grid = np.full((9, 18), np.nan)
+    missing = np.full((9, 18), np.nan)
     hover_texts = np.full((9, 18), "", dtype=object)
 
-    # Fill grid with element symbols, hover text, and category colors
-    for _, row in df.iterrows():
-        group, period = row["group"], row["period"]
-        grid[period - 1, group - 1] = row[label] if not log else row[f"log10_{label}"]
-        label_texts[period - 1, group - 1] = f"{row['Z']}<br>{row['symbol']}<br>{row[label]}"
-        hover_texts[period - 1, group - 1] = f"{row['Z']}<br>{row['name']}<br>{row[label]}"
+    grid[rows, cols] = df[f"log10_{label}" if log else label].to_numpy(dtype=float)
+    records = list(zip(df["Z"], df["symbol"], df["name"], df[label], strict=True))
+    hover_texts[rows, cols] = [f"{z}<br>{name}<br>{val}" for z, _, name, val in records]
+    label_texts = [f"{z}<br>{sym}<br>{val}" for z, sym, _, val in records]
+    is_missing = ~df["symbol"].isin(values.keys()) if values is not None else np.zeros(len(df), dtype=bool)
+    missing[rows[is_missing], cols[is_missing]] = -1
 
-    # Create the plot
+    x, y = list(range(1, 19)), list(range(1, 10))
+
+    # A single trace for all elements without values (shown in grey), a single trace for the heatmap and a single text
+    # trace for labels. This is much faster to build and render than one trace / annotation per element.
     fig = go.Figure()
-
-    for el in Element:
-        if el.symbol not in values and (el.Z <= 92 or include_artificial):
-            fig.add_trace(
-                go.Heatmap(
-                    z=[-1],
-                    x=[get_group(el)],
-                    y=[get_period(el)],
-                    xgap=1,
-                    ygap=1,
-                    showscale=False,
-                    colorscale="Greys",
-                )
-            )
-
+    fig.add_trace(
+        go.Heatmap(z=missing, x=x, y=y, xgap=1, ygap=1, showscale=False, colorscale="Greys", hoverinfo="skip")
+    )
     fig.add_trace(
         go.Heatmap(
             z=grid,
-            x=list(range(1, 19)),
-            y=list(range(1, 9)),
+            x=x,
+            y=y,
             text=hover_texts,
             hoverinfo="text",
             showscale=True,
@@ -166,42 +159,38 @@ def pt_heatmap(
             coloraxis="coloraxis",
         )
     )
-
-    # Add annotations for element symbols
-    for _index, row in df.iterrows():
-        group, period = row["group"], row["period"]
-        fig.add_annotation(
-            x=group,
-            y=period,
-            text=label_texts[period - 1, group - 1],
-            showarrow=False,
-            font=dict(
-                family="Arial",
-                size=14,
-                color="black",
-                weight="bold",
-            ),
-            align="center",
+    fig.add_trace(
+        go.Scatter(
+            x=df["group"],
+            y=df["period"],
+            text=label_texts,
+            mode="text",
+            textfont=dict(family="Arial", size=14, color="black", weight="bold"),
+            hoverinfo="skip",
+            showlegend=False,
+            cliponaxis=False,
         )
+    )
     # Hide x-axis
-    fig.update_xaxes(showticklabels=False, showgrid=False)
+    fig.update_xaxes(showticklabels=False, showgrid=False, zeroline=False, range=[0.5, 18.5])
 
     # Hide y-axis
-    fig.update_yaxes(showticklabels=False, showgrid=False)
+    fig.update_yaxes(showticklabels=False, showgrid=False, zeroline=False)
 
     # Update layout
     fig.update_layout(
         title=None,
         xaxis=dict(title=None),  # Maintain 1:1 aspect ratio
-        yaxis=dict(title=None, scaleanchor="x", scaleratio=1.33, autorange="reversed"),
+        yaxis=dict(title=None, scaleanchor="x", scaleratio=1.33, range=[9.5, 0.5]),
         width=1200,
         height=900,
         colorscale={"sequential": colorscale},
         plot_bgcolor="white",
     )
 
-    if log:
-        max_log = int(df[f"log10_{label}"].max())
+    finite_logs = df[f"log10_{label}"][np.isfinite(df[f"log10_{label}"])] if log else None
+    if log and len(finite_logs) > 0:
+        max_log = int(finite_logs.max())
         fig.update_layout(
             coloraxis=dict(
                 colorbar=dict(
