@@ -314,9 +314,11 @@ layout = dbc.Container(
         ),
         dbc.Tabs(
             [
-                dbc.Tab(pbe_tab, label="PBE"),
-                dbc.Tab(r2scan_tab, label="r2SCAN"),
-            ]
+                dbc.Tab(pbe_tab, label="PBE", tab_id="pbe-tab"),
+                dbc.Tab(r2scan_tab, label="r2SCAN", tab_id="r2scan-tab"),
+            ],
+            # Must be explicit: with Dash 4, dbc.Tabs no longer defaults to the first tab and all panes stay hidden.
+            active_tab="pbe-tab",
         ),
         dbc.Col(html.H4("Additional Information"), width=12, style={"padding-top": "20px"}),
         dbc.Col(
