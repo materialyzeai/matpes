@@ -6,6 +6,7 @@ import collections
 import functools
 import itertools
 import json
+import threading
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -38,6 +39,19 @@ for func in FUNCTIONALS:
 
 
 DEFAULT_FIG_LAYOUT = dict(font=dict(size=18), yaxis=dict(nticks=8))
+
+
+def _warm_db_connection() -> None:
+    """Open the (cached) DB connection so the first search does not pay the connection and auth cost."""
+    try:
+        MatPESDB().db.command("ping")
+    except Exception:
+        pass  # The DB may be unavailable (e.g., local dev); the search will surface any real error.
+
+
+# Runs per gunicorn worker since the app is imported after fork. Do not combine with gunicorn --preload, which would
+# create the MongoClient before forking.
+threading.Thread(target=_warm_db_connection, daemon=True).start()
 
 
 def get_data(
@@ -294,7 +308,7 @@ layout = dbc.Container(
                             id="chemsys_filter",
                             placeholder="e.g., Li-Fe-O",
                             # Avoid a DB query on every keystroke while still filtering as the user types.
-                            debounce=0.5,
+                            debounce=0.3,
                         ),
                     ],
                     width=2,

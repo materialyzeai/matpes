@@ -16,6 +16,8 @@ app = Dash(
     use_pages=True,
     external_stylesheets=[dbc.themes.PULSE],
     title="MatPES",
+    # Gzip callback responses and assets. Callback payloads shrink ~10x, which matters for distant users.
+    compress=True,
 )
 
 
