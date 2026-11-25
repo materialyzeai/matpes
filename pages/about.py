@@ -44,9 +44,10 @@ comprehensively. The aims of MatPES are three-fold:
    (r2SCAN) meta-GGA functional. The r2SCAN functional recovers all 17 exact constraints presently known for
    meta-GGA functionals and has shown good transferable accuracy across diverse bonding and chemistries.
 
-The workflow used to generate the MatPES dataset is shown below. MatPES 2025.2 is the latest public release; it
+The workflow used to generate the MatPES dataset is shown below. MatPES 2025.3 is the latest public release; it
 extends the initial 2025.1 release (~400,000 structures from 300 K MD simulations and Materials Project ground state
-calculations) with Bader and DDEC6 charges and deduplication. This dataset is much smaller
+calculations) with Bader and DDEC6 charges (2025.2), removal of structurally duplicated records, and a 90/5/5
+train/valid/test split (2025.3). This dataset is much smaller
 than other PES datasets in the literature and yet achieves essentially comparable or, in some cases, improved
 performance and reliability. The [MatPES.ai] website provides a comprehensive analysis of the
 [statistics](http://matpes.ai/explorer) and [performance benchmarks](http://matpes.ai/benchmarks) of the MatPES

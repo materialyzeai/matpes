@@ -31,7 +31,7 @@ def _load_jsonl(path: str) -> list[dict]:
 
 def get_data(
     functional: Literal["PBE", "R2SCAN"] = "PBE",
-    version: str = "2025.2",
+    version: str = "2025.3",
     return_data: bool = True,
     download_atoms: bool = False,
 ) -> tuple[list[dict], list[dict]] | list[dict] | None:
@@ -48,7 +48,7 @@ def get_data(
     Parameters:
         functional (Literal["PBE", "R2SCAN"]): The functional type specifying the
             dataset to retrieve. Defaults to "PBE".
-        version (str): The version of the dataset to retrieve. Defaults to "2025.2".
+        version (str): The version of the dataset to retrieve. Defaults to "2025.3".
         download_atoms (bool): Whether to download and include atomic data in
             the output. Defaults to False.
 

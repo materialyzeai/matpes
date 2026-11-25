@@ -9,10 +9,11 @@ for materials. MatPES is an initiative by the [Materialyze.AI lab] and the [Mate
 ### Versions
 
 | Version | Date | Description | Download |
-|---------|------|-------------|----------|
+| --- | --- | --- | --- |
+| 2025.3 | 25 Nov 2026 | Removed 8,520 PBE and 7,514 r2SCAN records that duplicate the structure of another record; added a random 90/5/5 train/valid/test split. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3.jsonl?download=true) (splits: PBE [train](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3-train.jsonl?download=true) / [valid](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3-valid.jsonl?download=true) / [test](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3-test.jsonl?download=true); r2SCAN [train](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3-train.jsonl?download=true) / [valid](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3-valid.jsonl?download=true) / [test](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3-test.jsonl?download=true)) |
 | 2025.2 | 15 Apr 2026 | Addition of Bader and DDEC6 charges; removed a small number of duplicated structures. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.2.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.2.jsonl?download=true) |
 | 2025.1 | 6 Mar 2025 | Initial release (~400k structures) | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.1.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.1.jsonl?download=true) |
-| -      | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-atoms.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-atoms.jsonl?download=true) |
+| - | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-atoms.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-atoms.jsonl?download=true) |
 
 ### Aims
 
@@ -23,8 +24,10 @@ for materials. MatPES is an initiative by the [Materialyze.AI lab] and the [Mate
 3. **Quality.** MatPES includes computed data from the PBE functional, as well as the high fidelity r2SCAN meta-GGA
    functional with improved description across diverse bonding and chemistries.
 
-MatPES 2025.2 is the latest public release; it extends the initial 2025.1 release (~400,000 structures from 300 K MD
-simulations) with Bader and DDEC6 atomic charges and removal of duplicated structures. The dataset remains much
+MatPES 2025.3 is the latest public release. The initial 2025.1 release comprised ~400,000 structures from 300 K MD
+simulations; 2025.2 added Bader and DDEC6 atomic charges and removed duplicated structures; 2025.3 removes a further
+8,520 PBE and 7,514 r2SCAN records that duplicate the structure of another record and provides a random 90/5/5
+train/valid/test split. The dataset remains much
 smaller than other PES datasets in the literature and yet achieves comparable or, in some cases,
 [improved performance and reliability](http://matpes.ai/benchmarks) on trained FPs.
 
@@ -51,7 +54,7 @@ Without any version specifiers, the latest version of each dataset will be retur
 To download a specific version, append a `-<version>` specifier. For example:
 
 ```python
-load_dataset("materialyze/matpes", "r2scan-2025.2")
+load_dataset("materialyze/matpes", "r2scan-2025.3")
 ```
 
 #### Data format (JSONL)
@@ -74,7 +77,7 @@ To read a `.jsonl` file directly without the `datasets` package:
 ```python
 import json
 
-with open("MatPES-PBE-2025.2.jsonl", encoding="utf-8") as f:
+with open("MatPES-PBE-2025.3.jsonl", encoding="utf-8") as f:
     data = [json.loads(line) for line in f]
 ```
 
@@ -90,11 +93,11 @@ Some command line usage examples:
 
 ```shell
 # Download the PBE dataset to the current directory.
-# You should see a MatPES-PBE-2025.2.jsonl file in your directory.
+# You should see a MatPES-PBE-2025.3.jsonl file in your directory.
 matpes download pbe
 
 # Extract all entries in the Fe-O chemical system.
-matpes data -i MatPES-PBE-2025.2.jsonl --chemsys Fe-O -o Fe-O.jsonl
+matpes data -i MatPES-PBE-2025.3.jsonl --chemsys Fe-O -o Fe-O.jsonl
 ```
 
 The `matpes.db` module provides functionality to create your own MongoDB database with the downloaded MatPES data,

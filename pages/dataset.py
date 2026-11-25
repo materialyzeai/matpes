@@ -14,7 +14,7 @@ INTRO_CONTENT = f"""
 ### Introduction
 
 Each MatPES dataset is provided as a [JSONL](https://jsonlines.org/) file, i.e., one JSON record per line. For
-example, the `MatPES-PBE-2025.2.jsonl` file contains one structure per line, with PES (energy, force, stresses)
+example, the `MatPES-PBE-2025.3.jsonl` file contains one structure per line, with PES (energy, force, stresses)
 and associated metadata. JSONL lets you stream the dataset line by line rather than parsing the entire file into
 memory at once, and is consumed natively by `datasets.load_dataset`. The
 [PBE]({MATPES_SRC}/MatPES-PBE-atoms.jsonl) and [r2SCAN]({MATPES_SRC}/MatPES-R2SCAN-atoms.jsonl) atomic energies
@@ -24,8 +24,9 @@ EXAMPLE_CONTENT = (
     """
 ### Example document
 
-The following is a commented version of a single line (one record) in the `MatPES-PBE-2025.2.jsonl` file. Note that the
-`bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for some reason.
+The following is a commented version of a single line (one record) in the `MatPES-PBE-2025.3.jsonl` file. Note that
+the `bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for
+some reason.
 These are a minority of structures.
 
 ```json
@@ -78,7 +79,7 @@ These are a minority of structures.
     "bandgap": 0.0,  // DFT-calculated electronic band gap (eV).
     "functional": "r2SCAN",  // DFT exchange-correlation functional used.
 
-    "formation_energy_per_atom": null,  // Formation energy per atom (eV). null if structure is not a relaxed ground state.
+    "formation_energy_per_atom": null,  // Formation energy per atom (eV). null if not a relaxed ground state.
     "cohesive_energy_per_atom": -1.2885743400000003,  // Cohesive energy per atom (eV).
 
     "abs_forces": [  // Magnitude of DFT force vector per atom (eV/Å).
@@ -118,6 +119,11 @@ These are a minority of structures.
 """,
     f"""
 #### Train-validation-test split
+
+From 2025.3, a random 90/5/5 train/valid/test split is provided directly as separate files:
+PBE [train]({MATPES_SRC}/MatPES-PBE-2025.3-train.jsonl) / [valid]({MATPES_SRC}/MatPES-PBE-2025.3-valid.jsonl) /
+[test]({MATPES_SRC}/MatPES-PBE-2025.3-test.jsonl) and r2SCAN [train]({MATPES_SRC}/MatPES-R2SCAN-2025.3-train.jsonl) /
+[valid]({MATPES_SRC}/MatPES-R2SCAN-2025.3-valid.jsonl) / [test]({MATPES_SRC}/MatPES-R2SCAN-2025.3-test.jsonl).
 
 If you wish to reproduce the exact train:validation:test split used in the MatPES paper, you can download the split
 indices for the [PBE]({MATPES_SRC}/MatPES-PBE-split.json.gz) and [r2SCAN]({MATPES_SRC}/MatPES-R2SCAN-split.json.gz).
