@@ -10,7 +10,7 @@ for materials. MatPES is an initiative by the [Materialyze.AI lab] and the [Mate
 
 | Version | Date | Description | Download |
 | --- | --- | --- | --- |
-| 2025.3 | 25 Nov 2026 | Removed 8,520 PBE and 7,514 r2SCAN records that duplicate the structure of another record; added a random 90/5/5 train/valid/test split. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3.jsonl?download=true) (splits: PBE [train](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3-train.jsonl?download=true) / [valid](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3-valid.jsonl?download=true) / [test](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3-test.jsonl?download=true); r2SCAN [train](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3-train.jsonl?download=true) / [valid](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3-valid.jsonl?download=true) / [test](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3-test.jsonl?download=true)) |
+| 2025.3 | 25 Nov 2026 | Removed 8,520 PBE and 7,514 r2SCAN duplicate records of rare earth compounds that are in the wrong low-spin state. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3.jsonl?download=true) |
 | 2025.2 | 15 Apr 2026 | Addition of Bader and DDEC6 charges; removed a small number of duplicated structures. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.2.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.2.jsonl?download=true) |
 | 2025.1 | 6 Mar 2025 | Initial release (~400k structures) | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.1.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.1.jsonl?download=true) |
 | - | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-atoms.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-atoms.jsonl?download=true) |
@@ -25,9 +25,8 @@ for materials. MatPES is an initiative by the [Materialyze.AI lab] and the [Mate
    functional with improved description across diverse bonding and chemistries.
 
 MatPES 2025.3 is the latest public release. The initial 2025.1 release comprised ~400,000 structures from 300 K MD
-simulations; 2025.2 added Bader and DDEC6 atomic charges and removed duplicated structures; 2025.3 removes a further
-8,520 PBE and 7,514 r2SCAN records that duplicate the structure of another record and provides a random 90/5/5
-train/valid/test split. The dataset remains much
+simulations; 2025.2 added Bader and DDEC6 atomic charges and removed duplicated structures; 2025.3 removes 8,520 PBE
+and 7,514 r2SCAN duplicate records of rare earth compounds that are in the wrong low-spin state. The dataset remains much
 smaller than other PES datasets in the literature and yet achieves comparable or, in some cases,
 [improved performance and reliability](http://matpes.ai/benchmarks) on trained FPs.
 
