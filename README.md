@@ -15,6 +15,7 @@ for materials. MatPES is an initiative by the [Materialyze.AI lab] and the [Mate
 | 2025.1 | 6 Mar 2025 | Initial release (~400k structures) | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.1.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.1.jsonl?download=true) |
 | - | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-atoms.parquet?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-atoms.parquet?download=true) |
 
+
 ### Aims
 
 1. **Accuracy.** MatPES is computed using static DFT calculations with stringent convergence criteria. Please refer
@@ -48,13 +49,17 @@ load_dataset("materialyze/matpes", "pbe")
 load_dataset("materialyze/matpes", "r2scan")
 ```
 
-Without any version specifiers, the latest version of each dataset will be returned.
-
-To download a specific version, append a `-<version>` specifier. For example:
+Without any version specifiers, the latest version of each dataset is returned as a single `train` split. Other
+configs:
 
 ```python
-load_dataset("materialyze/matpes", "r2scan-2025.3")
+load_dataset("materialyze/matpes", "r2scan-2025.3")  # A specific version.
+load_dataset("materialyze/matpes", "r2scan-split")  # 90/5/5 train/validation/test split of the latest version.
+load_dataset("materialyze/matpes", "r2scan-atoms")  # Isolated-atom reference energies.
 ```
+
+These configs load the Parquet files. Versions 2025.1 and 2025.2 are JSONL only; get them with
+`matpes.data.get_data(version=...)` or the download links above.
 
 #### Data formats
 

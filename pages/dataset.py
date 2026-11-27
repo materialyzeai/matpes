@@ -91,10 +91,10 @@ data = get_data("R2SCAN")  # List of record dicts, each with d["structure"].
 path = download("R2SCAN", split="train")  # MatPES-R2SCAN-2025.3-train.parquet
 structures = to_structures(path)  # Also to_atoms, to_mgl_dataset, write_mgl_shards and to_lmdb.
 
-# Hugging Face datasets: "pbe-parquet" / "r2scan-parquet" have train, validation and test splits.
+# Hugging Face datasets: "pbe-split" / "r2scan-split" have train, validation and test splits.
 from datasets import load_dataset
 
-ds = load_dataset("materialyze/matpes", "r2scan-parquet")
+ds = load_dataset("materialyze/matpes", "r2scan-split")
 
 # Any Parquet reader, e.g., pandas, polars or pyarrow.
 import pandas as pd
@@ -103,105 +103,81 @@ df = pd.read_parquet(path, columns=["matpes_id", "chemsys", "energy"])
 ```
 """
 
-EXAMPLE_CONTENT = (
-    """
-### Example document
+EXAMPLE_CONTENT = """
+### Example row
 
-The following is a commented version of a single record in the JSONL layout (e.g., `MatPES-PBE-2025.2.jsonl`, or
-`matpes.data.get_data(fmt="jsonl")`). The Parquet columns are flattened from these fields. Note that
-the `bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for
-some reason.
-These are a minority of structures.
+The following is a commented version of a single row of `MatPES-PBE-2025.3.parquet`, e.g., as returned by
+`pyarrow.parquet.read_table(path, filters=[("matpes_id", "==", "matpes-20240214_30496_38")]).to_pylist()[0]`. Each
+comment gives the Arrow type and units. The Bader, CM5 and DDEC6 columns are null for the minority of structures where
+the charge calculations failed.
 
 ```json
 {
-    "builder_meta": {  // Metadata used by MatPES build pipeline (emmet/pymatgen versions, timestamps).
-        ...
-    },
+    "matpes_id": "matpes-20240214_30496_38",  // string. Unique MatPES identifier.
+    "functional": "PBE",  // string. "PBE" or "r2SCAN".
+    "mp_id": "mp-30496",  // string. Source Materials Project ID.
+    "formula_pretty": "SrCd",  // string. Reduced formula.
+    "chemsys": "Cd-Sr",  // string. Elements sorted alphabetically, hyphen-separated.
+    "nsites": 2,  // int32. Number of sites.
 
-    "nsites": 2,  // Number of sites in the structure.
-    "elements": ["Cd", "Sr"],  // Elements present in the structure.
-    "nelements": 2,  // Number of unique elements in the structure.
-
-    "composition": { "Sr": 1.0, "Cd": 1.0 },  // Elemental composition as a dictionary.
-    "composition_reduced": { "Sr": 1.0, "Cd": 1.0 },  // Reduced/normalized composition.
-
-    "formula_pretty": "SrCd",  // Readable chemical formula.
-    "formula_anonymous": "AB",  // Anonymous formula representation.
-    "chemsys": "Cd-Sr",  // Chemical system (elements sorted alphabetically, hyphen-separated).
-
-    "volume": 69.60584595204928,  // Structure volume in ų.
-    "density": 4.772002781547363,  // Density in g/cm³.
-    "density_atomic": 34.80292297602464,  // Atomic density (volume per atom) in ų/atom.
-
-    "symmetry": {  // Crystallographic symmetry information (via spglib).
-        "crystal_system": "Triclinic",
-        "symbol": "P1",
-        "number": 1,
-        "point_group": "1",
-        "symprec": 0.1,
-        "angle_tolerance": 5.0,
-        "version": "2.5.0"
-    },
-
-    "structure": { ... },  // Pymatgen serialized Structure object (lattice, sites, species, coordinates).
-
-    "energy": -34.92810022,  // DFT total energy in eV.
-
-    "forces": [  // DFT-calculated forces on each atom (eV/Å), shape (nsites, 3).
-        [0.28135608, 0.39456307, 0.28030103],
-        [-0.28135608, -0.39456307, -0.28030103]
+    "lattice": [  // fixed_size_list<float64, 9>. Row-major 3x3 lattice matrix (Å).
+        4.680644111000686, 0.0, 0.0,
+        -0.6449861383871763, 3.1871035434547226, 0.0,
+        -0.3884423008526454, -0.2858736045691578, 4.665991267765886
+    ],
+    "pbc": [true, true, true],  // fixed_size_list<bool, 3>. Periodic boundary conditions.
+    "species": ["Sr", "Cd"],  // list<string>. Element of each site.
+    "positions": [  // list<fixed_size_list<float64, 3>>. Cartesian coordinates (Å), shape (nsites, 3).
+        [4.007651111000689, 1.0898900000000027, 1.9904600000000021],
+        [1.5305876991473655, 0.42296139543083866, 4.372134267765877]
     ],
 
-    "stress": [  // DFT-calculated stress tensor in Voigt notation (kbar): [xx, yy, zz, yz, xz, xy].
-        -3.70051569, 45.57452896, -9.58430813,
-        -0.80624803, 30.26332391, -29.08163294
+    "energy": -2.13697943,  // float64. DFT total energy (eV).
+    "forces": [  // list<fixed_size_list<float64, 3>>. DFT forces (eV/Å), shape (nsites, 3).
+        [0.27601894, 0.36633401, 0.27819465],
+        [-0.27601894, -0.36633401, -0.27819465]
     ],
-
-    "matpes_id": "matpes-20240214_30496_38",  // Unique MatPES identifier for this structure.
-
-    "bandgap": 0.0,  // DFT-calculated electronic band gap (eV).
-    "functional": "r2SCAN",  // DFT exchange-correlation functional used.
-
-    "formation_energy_per_atom": null,  // Formation energy per atom (eV). null if not a relaxed ground state.
-    "cohesive_energy_per_atom": -1.2885743400000003,  // Cohesive energy per atom (eV).
-
-    "abs_forces": [  // Magnitude of DFT force vector per atom (eV/Å).
-        0.5598302665807309,
-        0.5598302665807309
+    "stress": [  // fixed_size_list<float64, 6>. DFT stress (kbar, VASP sign convention, compressive positive),
+        4.93532684, 54.77972399, 0.01626795,  // Voigt order [xx, yy, zz, yz, xz, xy].
+        -0.51256794, 29.10553507, -27.91916545
     ],
+    "magmoms": [-0.0, 0.0],  // list<float64>. VASP site magnetic moments (μB).
 
-    "bader_charges": [8.867804, 13.132196],  // Bader-partitioned electron counts per atom (e). null if not computed.
-    "bader_magmoms": [-4e-05, -2.4e-05],  // Bader-partitioned magnetic moments per atom (μ_B). null if not computed.
+    "bandgap": 0.0,  // float64. DFT band gap (eV).
+    "cohesive_energy_per_atom": -1.047500055,  // float64. Cohesive energy (eV/atom).
+    "formation_energy_per_atom": null,  // float64. Formation energy (eV/atom); null unless a relaxed ground state.
 
-    "cm5_partial_charges": [-0.001647, 0.001647],  // CM5 partial atomic charges per atom (e), from Chargemol.
+    "bader_charges": [9.001567, 12.998434],  // list<float64>. Bader electron counts per atom (e).
+    "bader_magmoms": [-0.00026, 0.000135],  // list<float64>. Bader magnetic moments per atom (μB).
+    "cm5_partial_charges": [-0.027626, 0.027626],  // list<float64>. CM5 partial charges per atom (e).
+    "ddec6_partial_charges": [0.703964, -0.703964],  // list<float64>. DDEC6 net atomic charges (e).
+    "ddec6_spin_moments": [-0.000293, 0.000168],  // list<float64>. DDEC6 atomic spin moments (μB).
+    "ddec6_bond_order_sums": [2.208307, 2.641683],  // list<float64>. Sum of DDEC6 bond orders per atom.
+    "ddec6_dipoles": [  // list<fixed_size_list<float64, 3>>. DDEC6 atomic dipoles, shape (nsites, 3).
+        [-0.000783, -0.010785, -0.011862],
+        [0.026313, 0.04049, -0.003057]
+    ],
+    "ddec6_rsquared_moments": [43.276448, 60.520927],  // list<float64>. DDEC6 ⟨r²⟩ moments (a.u.).
+    "ddec6_rcubed_moments": [112.814581, 162.315746],  // list<float64>. DDEC6 ⟨r³⟩ moments (a.u.).
+    "ddec6_rfourth_moments": [389.37931, 572.965689],  // list<float64>. DDEC6 ⟨r⁴⟩ moments (a.u.).
 
-    "ddec6": {  // DDEC6 (Density Derived Electrostatic and Chemical) charge analysis results from Chargemol.
-        "partial_charges": [0.803751, -0.803751],  // DDEC6 net atomic charges per atom (e).
-        "bond_order_sums": [2.143492, 2.720226],  // Sum of DDEC6 bond orders for each atom.
-        "spin_moments": [-5.4e-05, -1.1e-05],  // DDEC6 atomic spin moments per atom (μ_B).
-        "dipoles": [  // DDEC6 atomic dipole vectors per atom (Debye), shape (nsites, 3).
-            [-0.003428, -0.011809, -0.014139],
-            [0.036623, 0.045952, -0.001567]
-        ],
-        "rsquared_moments": [42.045256, 61.998282],  // DDEC6 ⟨r²⟩ atomic multipole moments per atom (a.u.).
-        "rcubed_moments": [107.916366, 168.708361],  // DDEC6 ⟨r³⟩ atomic multipole moments per atom (a.u.).
-        "rfourth_moments": [368.510161, 601.960932]  // DDEC6 ⟨r⁴⟩ atomic multipole moments per atom (a.u.).
-    },
-
-    "provenance": {  // Metadata describing dataset origin and MD simulation conditions.
-        "original_mp_id": "mp-30496",  // Source structure ID from the Materials Project.
-        "materials_project_version": "v2022.10.28",  // Materials Project database version used.
-        "md_ensemble": "NpT",  // Molecular dynamics ensemble type.
-        "md_temperature": 300.0,  // MD simulation temperature (K).
-        "md_pressure": 1.0,  // MD simulation pressure (atm).
-        "md_step": 726,  // MD trajectory step number from which this snapshot was extracted.
-        "mlip_name": "M3GNet-MP-2021.2.8-DIRECT"  // MLIP used to drive the MD trajectory.
+    "provenance": {  // struct. Origin of the structure and MD sampling conditions.
+        "original_mp_id": "mp-30496",  // string. Source Materials Project ID.
+        "materials_project_version": "v2022.10.28",  // string. Materials Project database version.
+        "md_ensemble": "NpT",  // string. MD ensemble.
+        "md_temperature": 300.0,  // float64. MD temperature (K).
+        "md_pressure": 1.0,  // float64. MD pressure (atm).
+        "md_step": 726,  // int64. MD step from which this snapshot was taken.
+        "mlip_name": "M3GNet-MP-2021.2.8-DIRECT"  // string. MLIP used to drive the MD trajectory.
     }
 }
 ```
-""",
-)
+
+The JSONL records of 2025.1 and 2025.2 hold the same data plus fields derivable from it: a serialized pymatgen
+`structure`, `elements`, `composition`, `formula_anonymous`, `volume`, `density`, `symmetry`, `abs_forces` and a
+nested `ddec6` dict. `matpes.data.get_data()` returns records in this JSONL layout for every version, rebuilding the
+`structure` and composition fields from the Parquet columns.
+"""
 
 layout = dbc.Container(
     [
