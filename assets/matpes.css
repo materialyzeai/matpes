@@ -68,47 +68,39 @@
 
 img[alt=matpes_workflow] { width: 100%; }
 
-#versions-table table {
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-#versions-table th,
-#versions-table td {
-  border: 1px solid black;
-  padding: 8px;
-}
-
-#versions-table table {
-  border-collapse: collapse;
-}
-
-#downloads-table {
+#downloads-table,
+#versions-table {
   overflow-x: auto;
   margin-bottom: 1.5rem;
 }
 
-#downloads-table table {
+#downloads-table table,
+#versions-table table {
   border-collapse: collapse;
   width: 100%;
 }
 
 #downloads-table th,
-#downloads-table td {
+#downloads-table td,
+#versions-table th,
+#versions-table td {
   border: 1px solid #ccc;
   padding: 8px 12px;
   vertical-align: top;
 }
 
-#downloads-table th {
+#downloads-table th,
+#versions-table th {
   background-color: #633D9C;
   color: white;
   text-align: left;
 }
 
-#downloads-table td:first-child {
+#downloads-table td:first-child,
+#versions-table td:first-child {
   font-weight: 600;
   white-space: nowrap;
 }
 
-#downloads-table tr:nth-child(even) { background-color: #f6f3fa; }
+#downloads-table tr:nth-child(even),
+#versions-table tr:nth-child(even) { background-color: #f6f3fa; }
