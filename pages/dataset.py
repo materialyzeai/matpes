@@ -26,7 +26,7 @@ def _splits(functional: str, version: str, fmt: str) -> str:
 
 
 DOWNLOADS = [
-    ("2025.3", ("parquet", "jsonl")),
+    ("2025.3", ("parquet",)),
     ("2025.2", ("jsonl",)),
     ("2025.1", ("jsonl",)),
 ]
@@ -55,12 +55,23 @@ DOWNLOAD_TABLE = "\n".join(
 INTRO_CONTENT = """
 ### Introduction
 
-From 2025.3, each MatPES dataset is provided as a [Parquet](https://parquet.apache.org/) file with flat,
-Arrow-native columns (float64 throughout): `lattice` (9 floats, row-major 3x3, Å), `pbc`, `species`, Cartesian
-`positions` (Å), `forces` (eV/Å), `magmoms` (μB), `energy` (eV), `stress` (6-vector, VASP kbar), and metadata such as
-`matpes_id`, `functional`, `mp_id`, `chemsys`, `bandgap`, Bader/CM5/DDEC6 charges and `provenance`. All versions are
-also provided as [JSONL](https://jsonlines.org/) files, one JSON record per line. The atomic energies are computed with
-the same settings as the datasets.
+From 2025.3, MatPES is switching to the [Parquet](https://parquet.apache.org/) format. Compared with the JSONL files
+used for earlier versions, Parquet offers:
+
+- **Smaller downloads.** Columnar zstd compression makes the files about 4x smaller (e.g., 565 MB vs 2.3 GB for PBE).
+- **Faster loading.** Numeric arrays are stored in binary form, so reading a full dataset is more than an order of
+  magnitude faster than parsing JSON.
+- **Read only what you need.** Column projection and predicate pushdown let you load selected fields or filter by,
+  e.g., `chemsys` or `nsites` without reading the whole file.
+- **Typed, lossless arrays.** A fixed schema with float64 throughout maps directly to zero-copy NumPy arrays.
+- **Broad tooling support.** Parquet works out of the box with pandas, polars, pyarrow, DuckDB and Hugging Face
+  `datasets`.
+
+Each MatPES dataset is provided as a Parquet file with flat, Arrow-native columns (float64 throughout): `lattice` (9
+floats, row-major 3x3, Å), `pbc`, `species`, Cartesian `positions` (Å), `forces` (eV/Å), `magmoms` (μB), `energy`
+(eV), `stress` (6-vector, VASP kbar), and metadata such as `matpes_id`, `functional`, `mp_id`, `chemsys`, `bandgap`,
+Bader/CM5/DDEC6 charges and `provenance`. Versions 2025.1 and 2025.2 are provided as [JSONL](https://jsonlines.org/)
+files, one JSON record per line. The atomic energies are computed with the same settings as the datasets.
 
 ### Downloads
 
@@ -96,7 +107,7 @@ EXAMPLE_CONTENT = (
     """
 ### Example document
 
-The following is a commented version of a single record in the JSONL layout (e.g., `MatPES-PBE-2025.3.jsonl`, or
+The following is a commented version of a single record in the JSONL layout (e.g., `MatPES-PBE-2025.2.jsonl`, or
 `matpes.data.get_data(fmt="jsonl")`). The Parquet columns are flattened from these fields. Note that
 the `bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for
 some reason.
