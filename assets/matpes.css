@@ -82,3 +82,33 @@ img[alt=matpes_workflow] { width: 100%; }
 #versions-table table {
   border-collapse: collapse;
 }
+
+#downloads-table {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+#downloads-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#downloads-table th,
+#downloads-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  vertical-align: top;
+}
+
+#downloads-table th {
+  background-color: #633D9C;
+  color: white;
+  text-align: left;
+}
+
+#downloads-table td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#downloads-table tr:nth-child(even) { background-color: #f6f3fa; }

@@ -52,7 +52,7 @@ DOWNLOAD_TABLE = "\n".join(
     ]
 )
 
-INTRO_CONTENT = f"""
+INTRO_CONTENT = """
 ### Introduction
 
 From 2025.3, each MatPES dataset is provided as a [Parquet](https://parquet.apache.org/) file with flat,
@@ -66,9 +66,9 @@ the same settings as the datasets.
 
 All files are hosted on [Hugging Face](https://huggingface.co/datasets/materialyze/matpes). Splits are a random
 90/5/5 train/valid/test partition.
+"""
 
-{DOWNLOAD_TABLE}
-
+LOADING_CONTENT = """
 ### Loading the data
 
 ```python
@@ -192,4 +192,15 @@ These are a minority of structures.
 """,
 )
 
-layout = dbc.Container([html.Div([dcc.Markdown(INTRO_CONTENT), dcc.Markdown(EXAMPLE_CONTENT)])])
+layout = dbc.Container(
+    [
+        html.Div(
+            [
+                dcc.Markdown(INTRO_CONTENT),
+                dcc.Markdown(DOWNLOAD_TABLE, id="downloads-table"),
+                dcc.Markdown(LOADING_CONTENT),
+                dcc.Markdown(EXAMPLE_CONTENT),
+            ]
+        )
+    ]
+)
