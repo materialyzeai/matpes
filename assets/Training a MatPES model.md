@@ -32,21 +32,19 @@ from pymatgen.core import Structure
 from torch.optim.lr_scheduler import CosineAnnealingLR
 from tqdm import tqdm
 
-from matpes.data import get_data
+from matpes.data import get_atom_energies, get_data
 ```
 
 
 ```python
-data = get_data("PBE", download_atoms=True)
+data = get_data("PBE")
 ```
 
 We need to load the atomic energies as the zero reference.
 
 
 ```python
-with zopen("MatPES-PBE-atoms.json.gz", "rt") as f:
-    isolated_energies_pbe = json.load(f)
-isolated_energies_pbe = {d["elements"][0]: d["energy"] for d in isolated_energies_pbe}
+isolated_energies_pbe = get_atom_energies("PBE")
 len(isolated_energies_pbe)
 ```
 

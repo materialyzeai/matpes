@@ -13,8 +13,9 @@ MatPES is an initiative by the [Materialyze.AI lab] and the [Materials Project] 
 3. **Quality.** MatPES includes computed data from the PBE functional, as well as the high fidelity r2SCAN meta-GGA
    functional with improved description across diverse bonding and chemistries.
 
-MatPES 2025.2 is the latest public release; it extends the initial 2025.1 release (~400,000 structures from 300 K MD
-simulations) with Bader and DDEC6 atomic charges and removal of duplicated structures. The dataset remains much
+MatPES 2025.3 is the latest public release. The initial 2025.1 release comprised ~400,000 structures from 300 K MD
+simulations; 2025.2 added Bader and DDEC6 atomic charges and removed duplicated structures; 2025.3 removes 8,520 PBE
+and 7,514 r2SCAN duplicate records of rare earth compounds that are in the wrong low-spin state. The dataset remains much
 smaller than other PES datasets in the literature and yet achieves comparable or, in some cases,
 [improved performance and reliability](http://matpes.ai/benchmarks).
 
@@ -33,13 +34,14 @@ pip install matpes
 Some command line usage examples:
 
 ```shell
-# Download the PBE dataset to the current directory
+# Download the PBE dataset (MatPES-PBE-2025.3.parquet) into the Hugging Face cache.
 matpes download pbe
 
-# You should see a MatPES-PBE-2025.2.jsonl file in your directory.
+# Extract all entries in the Fe-O chemical system (JSONL or Parquet in/out, by suffix).
+matpes data --chemsys Fe-O -o Fe-O.parquet MatPES-PBE-2025.3.parquet
 
-# Extract all entries in the Fe-O chemical system
-matpes data -i MatPES-PBE-2025.2.jsonl --chemsys Fe-O -o Fe-O.jsonl
+# Convert MatPES-style JSONL files (e.g., older versions or your own data) to Parquet.
+matpes convert MatPES-PBE-2025.2.jsonl
 ```
 
 The `matpes.db` module provides functionality to create your own MongoDB database with the MatPES downloaded data,
@@ -90,7 +92,7 @@ In addition, if you use any of the pre-trained FPs or architectures, please cite
 [M3GNet]: http://dx.doi.org/10.1038/s43588-022-00349-3
 [CHGNet]: http://doi.org/10.1038/s42256-023-00716-3
 [TensorNet]: https://arxiv.org/abs/2306.06482
-[DIRECT]: https//doi.org/10.1038/s41524-024-01227-4
+[DIRECT]: https://doi.org/10.1038/s41524-024-01227-4
 [maml]: https://materialsvirtuallab.github.io/maml/
 [MatGL]: https://matgl.ai
 [MatPES]: https://matpes.ai

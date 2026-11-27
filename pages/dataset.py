@@ -1,4 +1,4 @@
-"""Benchmarks page."""
+"""Dataset page."""
 
 from __future__ import annotations
 
@@ -10,21 +10,94 @@ from matpes import MATPES_SRC
 
 dash.register_page(__name__, path="/dataset", order=4)
 
+FMT_LABELS = {"parquet": "Parquet", "jsonl": "JSONL"}
+
+
+def _link(name: str, label: str) -> str:
+    return f"[{label}]({MATPES_SRC}/{name}?download=true)"
+
+
+def _files(functional: str, version: str, fmts: tuple[str, ...]) -> str:
+    return ", ".join(_link(f"MatPES-{functional}-{version}.{fmt}", FMT_LABELS[fmt]) for fmt in fmts)
+
+
+def _splits(functional: str, version: str, fmt: str) -> str:
+    return " / ".join(_link(f"MatPES-{functional}-{version}-{s}.{fmt}", s) for s in ("train", "valid", "test"))
+
+
+DOWNLOADS = [
+    ("2025.3", ("parquet", "jsonl")),
+    ("2025.2", ("jsonl",)),
+    ("2025.1", ("jsonl",)),
+]
+
+DOWNLOAD_TABLE = "\n".join(
+    [
+        "| Version | PBE | r2SCAN | Train / valid / test splits |",
+        "| --- | --- | --- | --- |",
+        *(
+            f"| {version} | {_files('PBE', version, fmts)} | {_files('R2SCAN', version, fmts)} | "
+            + (
+                f"PBE {_splits('PBE', version, fmts[0])}; r2SCAN {_splits('R2SCAN', version, fmts[0])}"
+                if version != "2025.1"
+                else "-"
+            )
+            + " |"
+            for version, fmts in DOWNLOADS
+        ),
+        (
+            f"| Atomic energies | {_files('PBE', 'atoms', ('parquet', 'jsonl'))} | "
+            f"{_files('R2SCAN', 'atoms', ('parquet', 'jsonl'))} | - |"
+        ),
+    ]
+)
+
 INTRO_CONTENT = f"""
 ### Introduction
 
-Each MatPES dataset is provided as a [JSONL](https://jsonlines.org/) file, i.e., one JSON record per line. For
-example, the `MatPES-PBE-2025.3.jsonl` file contains one structure per line, with PES (energy, force, stresses)
-and associated metadata. JSONL lets you stream the dataset line by line rather than parsing the entire file into
-memory at once, and is consumed natively by `datasets.load_dataset`. The
-[PBE]({MATPES_SRC}/MatPES-PBE-atoms.jsonl) and [r2SCAN]({MATPES_SRC}/MatPES-R2SCAN-atoms.jsonl) atomic energies
-computed with the same settings are also available. """
+From 2025.3, each MatPES dataset is provided as a [Parquet](https://parquet.apache.org/) file with flat,
+Arrow-native columns (float64 throughout): `lattice` (9 floats, row-major 3x3, Å), `pbc`, `species`, Cartesian
+`positions` (Å), `forces` (eV/Å), `magmoms` (μB), `energy` (eV), `stress` (6-vector, VASP kbar), and metadata such as
+`matpes_id`, `functional`, `mp_id`, `chemsys`, `bandgap`, Bader/CM5/DDEC6 charges and `provenance`. All versions are
+also provided as [JSONL](https://jsonlines.org/) files, one JSON record per line. The atomic energies are computed with
+the same settings as the datasets.
+
+### Downloads
+
+All files are hosted on [Hugging Face](https://huggingface.co/datasets/materialyze/matpes). Splits are a random
+90/5/5 train/valid/test partition.
+
+{DOWNLOAD_TABLE}
+
+### Loading the data
+
+```python
+# matpes package: Parquet by default, JSONL for versions without Parquet files.
+from matpes.data import download, get_data
+from matpes.convert import to_structures
+
+data = get_data("R2SCAN")  # List of record dicts, each with d["structure"].
+path = download("R2SCAN", split="train")  # MatPES-R2SCAN-2025.3-train.parquet
+structures = to_structures(path)  # Also to_atoms, to_mgl_dataset, write_mgl_shards and to_lmdb.
+
+# Hugging Face datasets: "pbe-parquet" / "r2scan-parquet" have train, validation and test splits.
+from datasets import load_dataset
+
+ds = load_dataset("materialyze/matpes", "r2scan-parquet")
+
+# Any Parquet reader, e.g., pandas, polars or pyarrow.
+import pandas as pd
+
+df = pd.read_parquet(path, columns=["matpes_id", "chemsys", "energy"])
+```
+"""
 
 EXAMPLE_CONTENT = (
     """
 ### Example document
 
-The following is a commented version of a single line (one record) in the `MatPES-PBE-2025.3.jsonl` file. Note that
+The following is a commented version of a single record in the JSONL layout (e.g., `MatPES-PBE-2025.3.jsonl`, or
+`matpes.data.get_data(fmt="jsonl")`). The Parquet columns are flattened from these fields. Note that
 the `bader_`, `cm5_partial_charges` and `ddec6` keys are None for structures where the charge calculations failed for
 some reason.
 These are a minority of structures.
@@ -116,47 +189,6 @@ These are a minority of structures.
     }
 }
 ```
-""",
-    f"""
-#### Train-validation-test split
-
-From 2025.3, a random 90/5/5 train/valid/test split is provided directly as separate files:
-PBE [train]({MATPES_SRC}/MatPES-PBE-2025.3-train.jsonl) / [valid]({MATPES_SRC}/MatPES-PBE-2025.3-valid.jsonl) /
-[test]({MATPES_SRC}/MatPES-PBE-2025.3-test.jsonl) and r2SCAN [train]({MATPES_SRC}/MatPES-R2SCAN-2025.3-train.jsonl) /
-[valid]({MATPES_SRC}/MatPES-R2SCAN-2025.3-valid.jsonl) / [test]({MATPES_SRC}/MatPES-R2SCAN-2025.3-test.jsonl).
-
-If you wish to reproduce the exact train:validation:test split used in the MatPES paper, you can download the split
-indices for the [PBE]({MATPES_SRC}/MatPES-PBE-split.json.gz) and [r2SCAN]({MATPES_SRC}/MatPES-R2SCAN-split.json.gz).
-You can then use the following code to split the dataset into train, validation, and test sets:
-""",
-    """
-```python
-from monty.serialization import loadfn
-import json
-
-# The dataset is JSONL (one record per line); read it line by line.
-with open("MatPES-PBE-2025.2.jsonl", encoding="utf-8") as f:
-    pbe = [json.loads(line) for line in f]
-
-# The split-index file is a plain JSON mapping and is loaded with loadfn.
-splits = loadfn("MatPES-PBE-split.json.gz")
-
-train_set = []
-valid_set = []
-test_set = []
-
-for i, d in enumerate(pbe):
-    if i in splits["train"]:
-        train_set.append(d)
-    elif i in splits["valid"]:
-        valid_set.append(d)
-    else:
-        test_set.append(d)
-
-print(f"{len(train_set)}-{len(valid_set)}-{len(test_set)}")
-# Output is 391240-21735-21737
-```
-
 """,
 )
 

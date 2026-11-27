@@ -44,12 +44,19 @@ dependencies = [
     "pymatgen",
     "tqdm",
     "datasets>=3.6.0",
+    "pyarrow>=17",
+    "numpy",
     "gunicorn>=25.3.0",
     "dash[compress]>=4.1.0",
     "dash-bootstrap-components>=2.0.4",
     "dash-bootstrap-templates>=2.1.0",
 ]
 version = "0.0.3"
+
+[project.optional-dependencies]
+ase = ["ase>=3.23"]
+lmdb = ["lmdb>=1.4"]
+matgl = ["matgl>=4.1"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -178,6 +185,9 @@ exclude = ["**/tests"]
 [dependency-groups]
 dev = [
     "pre-commit>=4.2.0",
+    "pytest>=8",
+    "ase>=3.23",
+    "lmdb>=1.4",
 ]
 lint = [
     "mypy>=1.15.0",
