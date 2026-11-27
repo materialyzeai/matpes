@@ -68,9 +68,13 @@
 
 img[alt=matpes_workflow] { width: 100%; }
 
-#downloads-table,
-#versions-table {
+#downloads-table {
   overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+/* On the home page, #versions-table wraps the whole README, so space the table itself. */
+#versions-table table {
   margin-bottom: 1.5rem;
 }
 
