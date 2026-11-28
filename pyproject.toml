@@ -15,7 +15,7 @@ maintainers = [
 ]
 description = """Tools for working with MatPES."""
 readme = "README.md"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.12"
 keywords = [
     "potential energy surface",
     "PES",
