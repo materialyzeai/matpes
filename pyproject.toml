@@ -44,7 +44,7 @@ dependencies = [
     "pymatgen",
     "tqdm",
     "datasets>=3.6.0",
-    "pyarrow>=17",
+    "pyarrow>=21",
     "numpy",
     "gunicorn>=25.3.0",
     "dash[compress]>=4.1.0",

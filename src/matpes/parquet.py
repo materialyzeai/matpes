@@ -137,9 +137,39 @@ METADATA_KEY = b"matpes"
 """Key of the MatPES JSON entry in the Parquet file-level key-value metadata."""
 
 
+_PARQUET_SUFFIXES = {".parquet", ".pq"}
+_SPLIT_ORDER = ("train", "validation", "valid", "test")
+
+
 def is_parquet(path: str | PathLike) -> bool:
-    """Whether ``path`` refers to a Parquet file (by suffix)."""
-    return Path(path).suffix.lower() in {".parquet", ".pq"}
+    """Whether ``path`` is a Parquet file (by suffix) or a directory of Parquet files."""
+    path = Path(path)
+    if path.is_dir():
+        return any(p.suffix.lower() in _PARQUET_SUFFIXES for p in path.iterdir())
+    return path.suffix.lower() in _PARQUET_SUFFIXES
+
+
+def parquet_files(path: str | PathLike) -> list[str]:
+    """Return the Parquet files of a Parquet file or directory.
+
+    Files in a directory are ordered train, validation, test, then any others by name, so that a directory of split
+    files (as downloaded by :func:`matpes.data.download`) reads as one dataset in a deterministic order.
+
+    Args:
+        path: Parquet file or directory.
+
+    Returns:
+        List of file paths.
+    """
+    path = Path(path)
+    if not path.is_dir():
+        return [str(path)]
+
+    def key(p: Path) -> tuple[int, str]:
+        stem = p.stem.lower()
+        return (_SPLIT_ORDER.index(stem) if stem in _SPLIT_ORDER else len(_SPLIT_ORDER), p.name)
+
+    return [str(p) for p in sorted((p for p in path.iterdir() if p.suffix.lower() in _PARQUET_SUFFIXES), key=key)]
 
 
 def record_to_row(record: dict) -> dict[str, Any]:
@@ -272,7 +302,8 @@ def iter_batches(
     """Iterate over a MatPES dataset as Arrow record batches, in file order.
 
     Args:
-        source: Path to a Parquet or (optionally gzipped) JSONL file, or an in-memory :class:`pyarrow.Table`.
+        source: Path to a Parquet file, a directory of Parquet files (read in :func:`parquet_files` order), an
+            (optionally gzipped) JSONL file, or an in-memory :class:`pyarrow.Table`.
         columns: Columns to read. Defaults to all. For Parquet, unread columns are never decoded.
         filters: Row filter, either a :class:`pyarrow.compute.Expression` (e.g., ``pc.field("chemsys") == "Fe-O"``)
             or DNF tuples as accepted by :func:`pyarrow.parquet.read_table` (e.g., ``[("nsites", "<", 10)]``).
@@ -291,7 +322,7 @@ def iter_batches(
         yield from table.to_batches(max_chunksize=batch_size)
         return
     if is_parquet(source):
-        dataset = pds.dataset(source, format="parquet")
+        dataset = pds.dataset(parquet_files(source), format="parquet")
         yield from dataset.to_batches(columns=columns, filter=expr, batch_size=batch_size)
         return
     for records in _batched(_iter_jsonl(source), batch_size):
@@ -309,7 +340,7 @@ def read_table(source: Source, columns: Sequence[str] | None = None, filters: Fi
     Use ``table.to_pandas()`` or ``polars.from_arrow(table)`` for dataframe access.
 
     Args:
-        source: Path to a Parquet or JSONL file, or a :class:`pyarrow.Table`.
+        source: Path to a Parquet file or directory, a JSONL file, or a :class:`pyarrow.Table`.
         columns: Columns to read. Defaults to all.
         filters: Row filter. See :func:`iter_batches`.
 
@@ -317,7 +348,8 @@ def read_table(source: Source, columns: Sequence[str] | None = None, filters: Fi
         :class:`pyarrow.Table`.
     """
     if not isinstance(source, pa.Table) and is_parquet(source):
-        return pq.read_table(source, columns=columns, filters=_to_expression(filters))
+        files = parquet_files(source)
+        return pq.read_table(files if len(files) > 1 else files[0], columns=columns, filters=_to_expression(filters))
     batches = list(iter_batches(source, columns=columns, filters=filters))
     if batches:
         return pa.Table.from_batches(batches)
@@ -403,8 +435,11 @@ def iter_rows(
 
 
 def read_metadata(path: str | PathLike) -> dict[str, Any]:
-    """Read the MatPES file-level metadata (dataset version, functional, units, ...) of a Parquet file."""
-    kv = pq.read_schema(path).metadata or {}
+    """Read the MatPES file-level metadata (dataset version, functional, units, ...) of a Parquet file or directory.
+
+    For a directory, the metadata of its first file is returned.
+    """
+    kv = pq.read_schema(parquet_files(path)[0]).metadata or {}
     return json.loads(kv[METADATA_KEY]) if METADATA_KEY in kv else {}
 
 
@@ -425,13 +460,18 @@ def write_parquet(
             while retaining effective statistics-based pruning.
         compression: Parquet compression codec.
 
+    Pages are cut with content-defined chunking, so that a new release that leaves most rows unchanged shares most of
+    its bytes with the previous one and Hugging Face's deduplicating storage uploads only the changed parts.
+
     Returns:
         Number of rows written.
     """
     meta = {"schema_version": SCHEMA_VERSION, "units": UNITS, **(metadata or {})}
     schema = SCHEMA.with_metadata({METADATA_KEY: json.dumps(meta).encode()})
     n = 0
-    with pq.ParquetWriter(path, schema, compression=compression, write_page_index=True) as writer:
+    with pq.ParquetWriter(
+        path, schema, compression=compression, write_page_index=True, use_content_defined_chunking=True
+    ) as writer:
         if isinstance(rows, pa.Table):
             writer.write_table(rows.select(SCHEMA.names).cast(SCHEMA), row_group_size=row_group_size)
             return rows.num_rows
@@ -450,7 +490,7 @@ def jsonl_to_parquet(
 ) -> Path:
     """Convert a MatPES JSONL file into Parquet with constant memory.
 
-    Row order is preserved, so index-based splits (e.g., ``MatPES-PBE-split.json.gz``) remain valid.
+    Row order is preserved.
 
     Args:
         src: Input ``.jsonl`` or ``.jsonl.gz`` file.

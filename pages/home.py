@@ -8,7 +8,7 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 
-from matpes import MATPES_SRC
+from matpes import MATPES_HF
 
 dash.register_page(__name__, path="/", order=1)
 
@@ -33,7 +33,7 @@ jumbotron = html.Div(
                     [
                         dbc.Button(
                             "PBE",
-                            href=f"{MATPES_SRC}/MatPES-PBE-2025.3.parquet?download=true",
+                            href=f"{MATPES_HF}/tree/main/pbe",
                             class_name="me-1 download-button",
                             color="info",
                             external_link=True,
@@ -41,13 +41,13 @@ jumbotron = html.Div(
                             id="pbe-download-button",
                         ),
                         dbc.Tooltip(
-                            "Download PBE dataset",
+                            "PBE dataset files on Hugging Face",
                             target="pbe-download-button",
                             placement="bottom",
                         ),
                         dbc.Button(
                             "r2SCAN",
-                            href=f"{MATPES_SRC}/MatPES-R2SCAN-2025.3.parquet?download=true",
+                            href=f"{MATPES_HF}/tree/main/r2scan",
                             class_name="me-1 download-button",
                             color="success",
                             external_link=True,
@@ -55,7 +55,7 @@ jumbotron = html.Div(
                             id="r2scan-download-button",
                         ),
                         dbc.Tooltip(
-                            "Download r2SCAN dataset",
+                            "r2SCAN dataset files on Hugging Face",
                             target="r2scan-download-button",
                             placement="bottom",
                         ),

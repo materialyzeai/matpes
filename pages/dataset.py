@@ -6,48 +6,36 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 
-from matpes import MATPES_SRC
+from matpes import MATPES_HF
 
 dash.register_page(__name__, path="/dataset", order=4)
 
-FMT_LABELS = {"parquet": "Parquet", "jsonl": "JSONL"}
+
+def _link(revision: str, path: str, label: str) -> str:
+    return f"[{label}]({MATPES_HF}/resolve/{revision}/{path}?download=true)"
 
 
-def _link(name: str, label: str) -> str:
-    return f"[{label}]({MATPES_SRC}/{name}?download=true)"
+def _parquet(func: str) -> str:
+    return " / ".join(_link("v2025.3", f"{func}/{s}.parquet", s) for s in ("train", "validation", "test"))
 
 
-def _files(functional: str, version: str, fmts: tuple[str, ...]) -> str:
-    return ", ".join(_link(f"MatPES-{functional}-{version}.{fmt}", FMT_LABELS[fmt]) for fmt in fmts)
+def _jsonl(func: str, version: str, splits: bool) -> str:
+    links = [_link(f"v{version}", f"MatPES-{func}-{version}.jsonl", "full")]
+    if splits:
+        links += [_link(f"v{version}", f"MatPES-{func}-{version}-{s}.jsonl", s) for s in ("train", "valid", "test")]
+    return " / ".join(links)
 
-
-def _splits(functional: str, version: str, fmt: str) -> str:
-    return " / ".join(_link(f"MatPES-{functional}-{version}-{s}.{fmt}", s) for s in ("train", "valid", "test"))
-
-
-DOWNLOADS = [
-    ("2025.3", ("parquet",)),
-    ("2025.2", ("jsonl",)),
-    ("2025.1", ("jsonl",)),
-]
 
 DOWNLOAD_TABLE = "\n".join(
     [
-        "| Version | PBE | r2SCAN | Train / valid / test splits |",
+        "| Version | Format | PBE | r2SCAN |",
         "| --- | --- | --- | --- |",
-        *(
-            f"| {version} | {_files('PBE', version, fmts)} | {_files('R2SCAN', version, fmts)} | "
-            + (
-                f"PBE {_splits('PBE', version, fmts[0])}; r2SCAN {_splits('R2SCAN', version, fmts[0])}"
-                if version != "2025.1"
-                else "-"
-            )
-            + " |"
-            for version, fmts in DOWNLOADS
-        ),
+        f"| 2025.3 | Parquet | {_parquet('pbe')} | {_parquet('r2scan')} |",
+        f"| 2025.2 | JSONL | {_jsonl('PBE', '2025.2', True)} | {_jsonl('R2SCAN', '2025.2', True)} |",
+        f"| 2025.1 | JSONL | {_jsonl('PBE', '2025.1', False)} | {_jsonl('R2SCAN', '2025.1', False)} |",
         (
-            f"| Atomic energies | {_files('PBE', 'atoms', ('parquet', 'jsonl'))} | "
-            f"{_files('R2SCAN', 'atoms', ('parquet', 'jsonl'))} | - |"
+            f"| Atomic energies | Parquet | {_link('v2025.3', 'atoms/pbe.parquet', 'atoms')} | "
+            f"{_link('v2025.3', 'atoms/r2scan.parquet', 'atoms')} |"
         ),
     ]
 )
@@ -58,7 +46,7 @@ INTRO_CONTENT = """
 From 2025.3, MatPES is switching to the [Parquet](https://parquet.apache.org/) format. Compared with the JSONL files
 used for earlier versions, Parquet offers:
 
-- **Smaller downloads.** Columnar zstd compression makes the files about 4x smaller (e.g., 565 MB vs 2.3 GB for PBE).
+- **Smaller downloads.** Columnar zstd compression makes the files about 4x smaller (e.g., 580 MB vs 2.3 GB for PBE).
 - **Faster loading.** Numeric arrays are stored in binary form, so reading a full dataset is more than an order of
   magnitude faster than parsing JSON.
 - **Read only what you need.** Column projection and predicate pushdown let you load selected fields or filter by,
@@ -75,8 +63,11 @@ files, one JSON record per line. The atomic energies are computed with the same 
 
 ### Downloads
 
-All files are hosted on [Hugging Face](https://huggingface.co/datasets/materialyze/matpes). Splits are a random
-90/5/5 train/valid/test partition.
+All files are hosted on [Hugging Face](https://huggingface.co/datasets/materialyze/matpes). From 2025.3, each
+functional is a folder of `train`, `validation` and `test` files (a random 90/5/5 split); the full dataset is the union
+of the three. `main` holds the latest release and each release is a git tag (`v2025.1`, `v2025.2`, `v2025.3`), so the
+links below are pinned to their release.
+
 """
 
 LOADING_CONTENT = """
@@ -88,13 +79,13 @@ from matpes.data import download, get_data
 from matpes.convert import to_structures
 
 data = get_data("R2SCAN")  # List of record dicts, each with d["structure"].
-path = download("R2SCAN", split="train")  # MatPES-R2SCAN-2025.3-train.parquet
+path = download("R2SCAN", split="train")  # r2scan/train.parquet; download("R2SCAN") gives the full dataset
 structures = to_structures(path)  # Also to_atoms, to_mgl_dataset, write_mgl_shards and to_lmdb.
 
-# Hugging Face datasets: "pbe-split" / "r2scan-split" have train, validation and test splits.
+# Hugging Face datasets: train, validation and test splits; pin a release with revision="v2025.3".
 from datasets import load_dataset
 
-ds = load_dataset("materialyze/matpes", "r2scan-split")
+ds = load_dataset("materialyze/matpes", "r2scan")
 
 # Any Parquet reader, e.g., pandas, polars or pyarrow.
 import pandas as pd
@@ -106,7 +97,7 @@ df = pd.read_parquet(path, columns=["matpes_id", "chemsys", "energy"])
 EXAMPLE_CONTENT = """
 ### Example row
 
-The following is a commented version of a single row of `MatPES-PBE-2025.3.parquet`, e.g., as returned by
+The following is a commented version of a single row of `pbe/train.parquet` (2025.3), e.g., as returned by
 `pyarrow.parquet.read_table(path, filters=[("matpes_id", "==", "matpes-20240214_30496_38")]).to_pylist()[0]`. Each
 comment gives the Arrow type and units. The Bader, CM5 and DDEC6 columns are null for the minority of structures where
 the charge calculations failed.

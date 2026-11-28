@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import pickle
+import shutil
 from pathlib import Path
 
 import numpy as np
@@ -20,12 +21,14 @@ from matpes.convert import (
     to_lmdb,
     to_structures,
 )
-from matpes.data import get_filename
+from matpes.data import get_repo_files
 from matpes.parquet import (
     SCHEMA,
     batch_to_rows,
+    is_parquet,
     iter_rows,
     jsonl_to_parquet,
+    parquet_files,
     read_metadata,
     read_table,
     record_to_row,
@@ -218,17 +221,47 @@ def test_record_to_row_matches_schema(records):
     assert table.num_rows == len(records)
 
 
-def test_get_filename():
-    assert get_filename("pbe") == "MatPES-PBE-2025.3.parquet"
-    assert get_filename("r2scan", split="train") == "MatPES-R2SCAN-2025.3-train.parquet"
-    assert get_filename("PBE", atoms=True) == "MatPES-PBE-atoms.parquet"
-    assert get_filename("pbe", fmt="jsonl") == "MatPES-PBE-2025.3.jsonl"
-    assert get_filename("PBE", atoms=True, fmt="jsonl") == "MatPES-PBE-atoms.jsonl"
-    # Older versions quietly fall back to JSONL.
-    assert get_filename("PBE", version="2025.2") == "MatPES-PBE-2025.2.jsonl"
-    assert get_filename("R2SCAN", version="2025.2", split="test") == "MatPES-R2SCAN-2025.2-test.jsonl"
+def test_get_repo_files():
+    splits = ["pbe/train.parquet", "pbe/validation.parquet", "pbe/test.parquet"]
+    assert get_repo_files("pbe") == ("v2025.3", splits)
+    assert get_repo_files("r2scan", split="train") == ("v2025.3", ["r2scan/train.parquet"])
+    assert get_repo_files("R2SCAN", split="valid") == ("v2025.3", ["r2scan/validation.parquet"])
+    assert get_repo_files("PBE", atoms=True) == ("v2025.3", ["atoms/pbe.parquet"])
+    # Releases without Parquet files quietly fall back to JSONL at their own revision; atoms stay Parquet.
+    assert get_repo_files("PBE", version="2025.2") == ("v2025.2", ["MatPES-PBE-2025.2.jsonl"])
+    assert get_repo_files("R2SCAN", version="2025.2", split="validation") == (
+        "v2025.2",
+        ["MatPES-R2SCAN-2025.2-valid.jsonl"],
+    )
+    assert get_repo_files("PBE", version="2025.1", atoms=True) == ("v2025.3", ["atoms/pbe.parquet"])
+    # JSONL on request for the JSONL releases only.
+    assert get_repo_files("PBE", version="2025.1", fmt="jsonl") == ("v2025.1", ["MatPES-PBE-2025.1.jsonl"])
+    assert get_repo_files("PBE", version="2025.2", atoms=True, fmt="jsonl") == ("v2025.2", ["MatPES-PBE-atoms.jsonl"])
+    with pytest.raises(ValueError, match="only available as Parquet"):
+        get_repo_files("pbe", fmt="jsonl")
     with pytest.raises(ValueError, match="Unknown format"):
-        get_filename("PBE", fmt="csv")  # type: ignore[arg-type]
+        get_repo_files("PBE", fmt="csv")  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="Unknown split"):
+        get_repo_files("PBE", split="dev")  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="Unknown MatPES release"):
+        get_repo_files("PBE", version="2024.1")
+
+
+def test_parquet_directory(parquet_file, tmp_path):
+    """A directory of split files reads as one dataset, ordered train, validation, test."""
+    table = pq.read_table(parquet_file)
+    parts = {"test": table.slice(0, 1), "train": table.slice(1, 3), "validation": table.slice(4)}
+    for name, part in parts.items():
+        pq.write_table(part.replace_schema_metadata(table.schema.metadata), tmp_path / f"{name}.parquet")
+    assert is_parquet(tmp_path)
+    assert [Path(f).stem for f in parquet_files(tmp_path)] == ["train", "validation", "test"]
+    expected = pa.concat_tables([parts["train"], parts["validation"], parts["test"]])
+    assert read_table(tmp_path).column("matpes_id").to_pylist() == expected.column("matpes_id").to_pylist()
+    assert [r["matpes_id"] for r in iter_rows(tmp_path, columns=["matpes_id"])] == expected.column(
+        "matpes_id"
+    ).to_pylist()
+    assert read_metadata(tmp_path)["version"] == "test"
+    assert not is_parquet(tmp_path / "missing.jsonl")
 
 
 @pytest.mark.parametrize("fmt", ["parquet", "jsonl"])
@@ -306,23 +339,39 @@ def test_matgl(parquet_file, records, tmp_path):
 @pytest.mark.parametrize(
     ("kwargs", "expected"),
     [
-        ({}, ["MatPES-PBE-2025.3.parquet", "MatPES-PBE-atoms.parquet"]),
-        ({"split": "train"}, ["MatPES-PBE-2025.3-train.parquet", "MatPES-PBE-atoms.parquet"]),
-        ({"fmt": "jsonl"}, ["MatPES-PBE-2025.3.jsonl", "MatPES-PBE-atoms.jsonl"]),
-        ({"version": "2025.2"}, ["MatPES-PBE-2025.2.jsonl", "MatPES-PBE-atoms.parquet"]),
+        (
+            {},
+            [
+                ("v2025.3", "pbe/train.parquet"),
+                ("v2025.3", "pbe/validation.parquet"),
+                ("v2025.3", "pbe/test.parquet"),
+                ("v2025.3", "atoms/pbe.parquet"),
+            ],
+        ),
+        ({"split": "train"}, [("v2025.3", "pbe/train.parquet"), ("v2025.3", "atoms/pbe.parquet")]),
+        (
+            {"version": "2025.2", "fmt": "jsonl"},
+            [("v2025.2", "MatPES-PBE-2025.2.jsonl"), ("v2025.2", "MatPES-PBE-atoms.jsonl")],
+        ),
+        ({"version": "2025.2"}, [("v2025.2", "MatPES-PBE-2025.2.jsonl"), ("v2025.3", "atoms/pbe.parquet")]),
     ],
 )
-def test_get_data_downloads_one_format(monkeypatch, parquet_file, kwargs, expected):
-    """Exactly one file per dataset is fetched from Hugging Face; Parquet is never paired with a JSONL download."""
+def test_get_data_downloads_one_format(monkeypatch, parquet_file, records, tmp_path, kwargs, expected):
+    """Each dataset is fetched in one format only; Parquet is never paired with a JSONL download."""
     import matpes.data  # noqa: PLC0415
 
     fetched = []
 
-    def fake_hf_hub_download(repo_id, filename, repo_type, local_dir=None):
-        fetched.append(filename)
-        return str(parquet_file if filename.endswith(".parquet") else SAMPLE)
+    def fake_hf_hub_download(repo_id, filename, repo_type, revision=None, local_dir=None):
+        fetched.append((revision, filename))
+        dst = tmp_path / revision / filename
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(parquet_file if filename.endswith(".parquet") else SAMPLE, dst)
+        return str(dst)
 
     monkeypatch.setattr(matpes.data, "hf_hub_download", fake_hf_hub_download)
     data, _ = matpes.data.get_data("PBE", download_atoms=True, **kwargs)
     assert fetched == expected
+    n_files = sum(not f.startswith(("atoms/", "MatPES-PBE-atoms")) for _, f in expected)
+    assert len(data) == n_files * len(records)
     assert "structure" in data[0]

@@ -1115,7 +1115,7 @@ requires-dist = [
     { name = "matgl", marker = "extra == 'matgl'", specifier = ">=4.1" },
     { name = "numpy" },
     { name = "pandas", specifier = ">=2" },
-    { name = "pyarrow", specifier = ">=17" },
+    { name = "pyarrow", specifier = ">=21" },
     { name = "pymatgen" },
     { name = "pymongo", specifier = ">=4.11" },
     { name = "tqdm" },

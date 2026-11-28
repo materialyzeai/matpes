@@ -20,29 +20,21 @@ import pyarrow.compute as pc
 from monty.io import zopen
 from pymatgen.core import Composition
 
-from .data import get_data
+from .data import LATEST_VERSION
+from .data import download as download_dataset
 from .parquet import is_parquet, jsonl_to_parquet, read_table, record_to_row, write_parquet
 
 
 def download(args):
+    """Download a MatPES dataset and its atomic reference energies, and print where they are.
+
+    Args:
+        args: Namespace with ``functional``, ``version``, ``split`` and ``format``.
     """
-    Function to download data based on the given functional argument.
-
-    This function utilizes the "get_data" method with an input argument
-    to fetch and download data tied to the specified functionality. After
-    successful execution, it outputs a confirmation message.
-
-    Parameters
-    ----------
-    args : argparse.Namespace
-        Argument namespace that must contain a "functional" attribute.
-
-    Raises:
-    ------
-    None
-    """
-    get_data(functional=args.functional, download_atoms=True, return_data=False, fmt=args.format)
-    print(f">>> Successfully downloaded data for {args.functional}.")
+    data = download_dataset(args.functional, args.version, split=args.split, fmt=args.format)
+    atoms = download_dataset(args.functional, args.version, atoms=True, fmt=args.format)
+    print(f">>> Downloaded MatPES {args.functional} {args.version} to {data}")
+    print(f">>> Atomic reference energies: {atoms}")
 
 
 def get_data_subset(args):
@@ -142,6 +134,23 @@ def main():
         nargs="?",
         default="PBE",
         help="Functional to download. Defaults to PBE.",
+    )
+
+    subparser_download.add_argument(
+        "-v",
+        "--version",
+        dest="version",
+        default=LATEST_VERSION,
+        help=f"MatPES release. Defaults to {LATEST_VERSION}.",
+    )
+
+    subparser_download.add_argument(
+        "-s",
+        "--split",
+        dest="split",
+        choices=["train", "validation", "valid", "test"],
+        default=None,
+        help="Download only one split. Defaults to the full dataset.",
     )
 
     subparser_download.add_argument(

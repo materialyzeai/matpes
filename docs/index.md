@@ -34,11 +34,11 @@ pip install matpes
 Some command line usage examples:
 
 ```shell
-# Download the PBE dataset (MatPES-PBE-2025.3.parquet) into the Hugging Face cache.
+# Download the PBE dataset (Parquet) into the Hugging Face cache and print its location.
 matpes download pbe
 
-# Extract all entries in the Fe-O chemical system (JSONL or Parquet in/out, by suffix).
-matpes data --chemsys Fe-O -o Fe-O.parquet MatPES-PBE-2025.3.parquet
+# Extract all entries in the Fe-O chemical system from a Parquet file or folder (or JSONL; output format by suffix).
+matpes data --chemsys Fe-O -o Fe-O.parquet path/to/pbe
 
 # Convert MatPES-style JSONL files (e.g., older versions or your own data) to Parquet.
 matpes convert MatPES-PBE-2025.2.jsonl

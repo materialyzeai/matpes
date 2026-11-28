@@ -10,10 +10,10 @@ for materials. MatPES is an initiative by the [Materialyze.AI lab] and the [Mate
 
 | Version | Date | Description | Download |
 | --- | --- | --- | --- |
-| 2025.3 | 25 Nov 2026 | Removed 8,520 PBE and 7,514 r2SCAN duplicate records of rare earth compounds that are in the wrong low-spin state. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.3.parquet?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.3.parquet?download=true) |
-| 2025.2 | 15 Apr 2026 | Addition of Bader and DDEC6 charges; removed a small number of duplicated structures. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.2.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.2.jsonl?download=true) |
-| 2025.1 | 6 Mar 2025 | Initial release (~400k structures) | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-2025.1.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-2025.1.jsonl?download=true) |
-| - | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-PBE-atoms.parquet?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/main/MatPES-R2SCAN-atoms.parquet?download=true) |
+| 2025.3 | 25 Nov 2026 | Removed 8,520 PBE and 7,514 r2SCAN duplicate records of rare earth compounds that are in the wrong low-spin state. Parquet with train/validation/test splits. | [PBE](https://huggingface.co/datasets/materialyze/matpes/tree/v2025.3/pbe), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/tree/v2025.3/r2scan) |
+| 2025.2 | 15 Apr 2026 | Addition of Bader and DDEC6 charges; removed a small number of duplicated structures. | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/v2025.2/MatPES-PBE-2025.2.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/v2025.2/MatPES-R2SCAN-2025.2.jsonl?download=true) |
+| 2025.1 | 6 Mar 2025 | Initial release (~400k structures) | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/v2025.1/MatPES-PBE-2025.1.jsonl?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/v2025.1/MatPES-R2SCAN-2025.1.jsonl?download=true) |
+| - | 6 Mar 2025 | Atomic reference energies | [PBE](https://huggingface.co/datasets/materialyze/matpes/resolve/v2025.3/atoms/pbe.parquet?download=true), [r2SCAN](https://huggingface.co/datasets/materialyze/matpes/resolve/v2025.3/atoms/r2scan.parquet?download=true) |
 
 
 ### Aims
@@ -44,29 +44,28 @@ the `datasets` package to download it:
 ```python
 from datasets import load_dataset
 
-load_dataset("materialyze/matpes", "pbe")
+load_dataset("materialyze/matpes", "pbe")  # DatasetDict with train/validation/test splits
 
 load_dataset("materialyze/matpes", "r2scan")
+
+load_dataset("materialyze/matpes", "r2scan-atoms")  # Isolated-atom reference energies
 ```
 
-Without any version specifiers, the latest version of each dataset is returned as a single `train` split. Other
-configs:
+The repository is organized as `pbe/{train,validation,test}.parquet`, `r2scan/{train,validation,test}.parquet` and
+`atoms/{pbe,r2scan}.parquet`; the full dataset is the union of the three splits. `main` always holds the latest
+release, and each release is a git tag. To pin a version, pass it as `revision`:
 
 ```python
-load_dataset("materialyze/matpes", "r2scan-2025.3")  # A specific version.
-load_dataset("materialyze/matpes", "r2scan-split")  # 90/5/5 train/validation/test split of the latest version.
-load_dataset("materialyze/matpes", "r2scan-atoms")  # Isolated-atom reference energies.
+load_dataset("materialyze/matpes", "pbe", revision="v2025.3")
+load_dataset("materialyze/matpes", "pbe-2025.2", revision="v2025.2")  # JSONL releases use versioned configs.
 ```
-
-These configs load the Parquet files. Versions 2025.1 and 2025.2 are JSONL only; get them with
-`matpes.data.get_data(version=...)` or the download links above.
 
 #### Data formats
 
 From 2025.3, MatPES is switching to [Parquet](https://parquet.apache.org/) as its distribution format. Earlier versions
 remain available as JSONL. Compared with JSONL, Parquet offers:
 
-- **Smaller downloads.** Columnar zstd compression makes the files about 4x smaller (e.g., 565 MB vs 2.3 GB for PBE).
+- **Smaller downloads.** Columnar zstd compression makes the files about 4x smaller (e.g., 580 MB vs 2.3 GB for PBE).
 - **Faster loading.** Numeric arrays are stored in binary form, so reading a full dataset is more than an order of
   magnitude faster than parsing JSON.
 - **Read only what you need.** Column projection and predicate pushdown let you load selected fields or filter by,
@@ -77,17 +76,18 @@ remain available as JSONL. Compared with JSONL, Parquet offers:
 
 The two layouts are:
 
-- **Parquet** (2025.3 onwards, `MatPES-<PBE|R2SCAN>-2025.3[-train|-valid|-test].parquet`): flat, Arrow-native columns.
+- **Parquet** (2025.3 onwards, `pbe/`, `r2scan/` and `atoms/` folders): flat, Arrow-native columns.
   The lattice is a fixed-size list of 9 floats, species a list of strings, positions/forces/magmoms per-atom lists,
   energy a scalar and stress a 6-vector, plus metadata (`functional`, `mp_id`, `formula_pretty`, `chemsys`,
   `bandgap`, Bader/CM5/DDEC6 charges, `provenance`). All floats are float64. See `matpes.parquet` for the full
   schema and units.
-- **JSONL** (2025.1 and 2025.2): one complete JSON record per line, including the serialized pymatgen `structure` and
+- **JSONL** (2025.1 and 2025.2, `MatPES-<PBE|R2SCAN>-<version>[-train|-valid|-test].jsonl`): one complete JSON record per line, including the serialized pymatgen `structure` and
   derived fields such as `composition` and `symmetry`.
 
-`matpes` downloads Parquet by default and quietly falls back to JSONL for versions without Parquet files
-(`fmt="jsonl"` forces JSONL). `get_data()` always returns the familiar list of record dicts with `d["structure"]`;
-for fast columnar access, use the Parquet file directly as below.
+`matpes` downloads Parquet by default and quietly falls back to JSONL for 2025.1 and 2025.2, which have no Parquet
+files. `get_data()` always returns the familiar list of record dicts with `d["structure"]`; for fast columnar access,
+use the Parquet files directly as below. `download()` returns a single file for one split, or the folder of all three
+split files for the full dataset; every helper accepts either.
 
 ```python
 import pyarrow.compute as pc
@@ -95,7 +95,7 @@ from matpes.data import download
 from matpes.convert import to_structures, to_atoms, to_mgl_dataset, write_mgl_shards, to_lmdb
 from matpes.parquet import read_table
 
-path = download("R2SCAN", split="train")  # MatPES-R2SCAN-2025.3-train.parquet
+path = download("R2SCAN", split="train")  # r2scan/train.parquet; download("R2SCAN") gives the full dataset
 
 table = read_table(path, columns=["matpes_id", "energy", "nsites"], filters=pc.field("chemsys") == "Li-O")
 structures = to_structures(path, filters=pc.field("chemsys") == "Li-O")  # pymatgen Structures
@@ -105,13 +105,12 @@ write_mgl_shards(path, "mgl_shards")  # Streamed on-disk MatGL shards for the fu
 to_lmdb(path, "matpes-r2scan-train.lmdb")  # LMDB for random access; read with matpes.convert.MatPESLMDB
 ```
 
-Every helper accepts either a Parquet or a JSONL file, so existing JSONL downloads keep working. Without any MatPES
-tooling:
+Every helper also accepts a JSONL file, so existing JSONL downloads keep working. Without any MatPES tooling:
 
 ```python
 import pandas as pd
 
-df = pd.read_parquet("MatPES-PBE-2025.3.parquet", columns=["matpes_id", "chemsys", "energy"])
+df = pd.read_parquet("hf://datasets/materialyze/matpes/pbe/train.parquet", columns=["matpes_id", "chemsys", "energy"])
 ```
 
 #### MatPES Package
@@ -125,11 +124,12 @@ pip install matpes
 Some command line usage examples:
 
 ```shell
-# Download the PBE dataset (Parquet) into the Hugging Face cache.
+# Download the PBE dataset (Parquet) into the Hugging Face cache and print its location.
 matpes download pbe
+matpes download r2scan --split train
 
-# Extract all entries in the Fe-O chemical system (JSONL or Parquet in/out, by suffix).
-matpes data --chemsys Fe-O -o Fe-O.parquet MatPES-PBE-2025.3.parquet
+# Extract all entries in the Fe-O chemical system from a Parquet file or folder (or JSONL; output format by suffix).
+matpes data --chemsys Fe-O -o Fe-O.parquet path/to/pbe
 matpes data --chemsys Fe-O -o Fe-O.jsonl MatPES-PBE-2025.2.jsonl
 
 # Convert MatPES-style JSONL files (e.g., older versions or your own data) to Parquet.

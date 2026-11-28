@@ -9,4 +9,8 @@ try:
 except PackageNotFoundError:
     pass  # package not installed
 
-MATPES_SRC = "https://huggingface.co/datasets/materialyze/matpes/resolve/main"
+MATPES_HF = "https://huggingface.co/datasets/materialyze/matpes"
+"""Hugging Face page of the MatPES dataset."""
+
+MATPES_SRC = f"{MATPES_HF}/resolve/main"
+"""Base URL for downloading files from the latest MatPES release."""
