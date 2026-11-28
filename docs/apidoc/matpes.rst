@@ -12,6 +12,14 @@ matpes.cli module
    :show-inheritance:
    :undoc-members:
 
+matpes.convert module
+---------------------
+
+.. automodule:: matpes.convert
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 matpes.data module
 ------------------
 
@@ -24,6 +32,14 @@ matpes.db module
 ----------------
 
 .. automodule:: matpes.db
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+matpes.parquet module
+---------------------
+
+.. automodule:: matpes.parquet
    :members:
    :show-inheritance:
    :undoc-members:

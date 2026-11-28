@@ -1060,7 +1060,7 @@ wheels = [
 
 [[package]]
 name = "matpes"
-version = "0.0.3"
+version = "0.0.4"
 source = { editable = "." }
 dependencies = [
     { name = "dash", extra = ["compress"] },

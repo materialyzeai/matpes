@@ -6,18 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>matpes &mdash; matpes 0.0.3 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+  <title>matpes &mdash; matpes 0.0.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
 
   
     <link rel="canonical" href="https://matpes.orgmodules.html"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=47de8214"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/documentation_options.js?v=8c5712d9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -78,13 +78,43 @@
 <li class="toctree-l1"><a class="reference internal" href="matpes.html">matpes package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="matpes.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matpes.html#module-matpes.cli">matpes.cli module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.cli.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.cli.download"><code class="docutils literal notranslate"><span class="pre">download()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.cli.get_data_subset"><code class="docutils literal notranslate"><span class="pre">get_data_subset()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="matpes.html#module-matpes.convert">matpes.convert module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.EV_PER_ANG3_PER_GPA"><code class="docutils literal notranslate"><span class="pre">EV_PER_ANG3_PER_GPA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.KBAR_TO_MATGL_GPA"><code class="docutils literal notranslate"><span class="pre">KBAR_TO_MATGL_GPA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.MatPESLMDB"><code class="docutils literal notranslate"><span class="pre">MatPESLMDB</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="matpes.html#matpes.convert.MatPESLMDB.get_atoms"><code class="docutils literal notranslate"><span class="pre">MatPESLMDB.get_atoms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="matpes.html#matpes.convert.MatPESLMDB.get_structure"><code class="docutils literal notranslate"><span class="pre">MatPESLMDB.get_structure()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.iter_atoms"><code class="docutils literal notranslate"><span class="pre">iter_atoms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.iter_structures"><code class="docutils literal notranslate"><span class="pre">iter_structures()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.row_to_atoms"><code class="docutils literal notranslate"><span class="pre">row_to_atoms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.row_to_structure"><code class="docutils literal notranslate"><span class="pre">row_to_structure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.to_atoms"><code class="docutils literal notranslate"><span class="pre">to_atoms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.to_lmdb"><code class="docutils literal notranslate"><span class="pre">to_lmdb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.to_mgl_dataset"><code class="docutils literal notranslate"><span class="pre">to_mgl_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.to_structures"><code class="docutils literal notranslate"><span class="pre">to_structures()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.convert.write_mgl_shards"><code class="docutils literal notranslate"><span class="pre">write_mgl_shards()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="matpes.html#module-matpes.data">matpes.data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.JSONL_VERSIONS"><code class="docutils literal notranslate"><span class="pre">JSONL_VERSIONS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.LATEST_VERSION"><code class="docutils literal notranslate"><span class="pre">LATEST_VERSION</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.PARQUET_VERSIONS"><code class="docutils literal notranslate"><span class="pre">PARQUET_VERSIONS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.SPLITS"><code class="docutils literal notranslate"><span class="pre">SPLITS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.Split"><code class="docutils literal notranslate"><span class="pre">Split</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.download"><code class="docutils literal notranslate"><span class="pre">download()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.get_atom_energies"><code class="docutils literal notranslate"><span class="pre">get_atom_energies()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.get_data"><code class="docutils literal notranslate"><span class="pre">get_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.get_repo_files"><code class="docutils literal notranslate"><span class="pre">get_repo_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.get_revision"><code class="docutils literal notranslate"><span class="pre">get_revision()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.data.load_records"><code class="docutils literal notranslate"><span class="pre">load_records()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="matpes.html#module-matpes.db">matpes.db module</a><ul>
@@ -97,7 +127,27 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="matpes.html#module-matpes">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matpes.html#module-matpes.parquet">matpes.parquet module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.METADATA_KEY"><code class="docutils literal notranslate"><span class="pre">METADATA_KEY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.SCHEMA"><code class="docutils literal notranslate"><span class="pre">SCHEMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.batch_to_rows"><code class="docutils literal notranslate"><span class="pre">batch_to_rows()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.is_parquet"><code class="docutils literal notranslate"><span class="pre">is_parquet()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.iter_batches"><code class="docutils literal notranslate"><span class="pre">iter_batches()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.iter_rows"><code class="docutils literal notranslate"><span class="pre">iter_rows()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.jsonl_to_parquet"><code class="docutils literal notranslate"><span class="pre">jsonl_to_parquet()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.parquet_files"><code class="docutils literal notranslate"><span class="pre">parquet_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.read_metadata"><code class="docutils literal notranslate"><span class="pre">read_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.read_table"><code class="docutils literal notranslate"><span class="pre">read_table()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.record_to_row"><code class="docutils literal notranslate"><span class="pre">record_to_row()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.row_to_record"><code class="docutils literal notranslate"><span class="pre">row_to_record()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.parquet.write_parquet"><code class="docutils literal notranslate"><span class="pre">write_parquet()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="matpes.html#module-matpes">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.MATPES_HF"><code class="docutils literal notranslate"><span class="pre">MATPES_HF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="matpes.html#matpes.MATPES_SRC"><code class="docutils literal notranslate"><span class="pre">MATPES_SRC</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

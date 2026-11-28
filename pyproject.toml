@@ -51,7 +51,7 @@ dependencies = [
     "dash-bootstrap-components>=2.0.4",
     "dash-bootstrap-templates>=2.1.0",
 ]
-version = "0.0.3"
+version = "0.0.4"
 
 [project.optional-dependencies]
 ase = ["ase>=3.23"]

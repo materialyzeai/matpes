@@ -6,18 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>matpes package &mdash; matpes 0.0.3 documentation</title>
-      <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="assets/css/theme.css?v=e59714d7" />
+  <title>matpes package &mdash; matpes 0.0.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="assets/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 
   
     <link rel="canonical" href="https://matpes.orgmatpes.html"/>
       <script src="assets/jquery.js?v=5d32c60e"></script>
       <script src="assets/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="assets/documentation_options.js?v=47de8214"></script>
-      <script src="assets/doctools.js?v=9bcbadda"></script>
-      <script src="assets/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="assets/documentation_options.js?v=8c5712d9"></script>
+      <script src="assets/doctools.js?v=fd6eb6e6"></script>
+      <script src="assets/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="assets/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -47,13 +47,43 @@
 <li><a class="reference internal" href="#">matpes package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-matpes.cli">matpes.cli module</a><ul>
+<li><a class="reference internal" href="#matpes.cli.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
 <li><a class="reference internal" href="#matpes.cli.download"><code class="docutils literal notranslate"><span class="pre">download()</span></code></a></li>
 <li><a class="reference internal" href="#matpes.cli.get_data_subset"><code class="docutils literal notranslate"><span class="pre">get_data_subset()</span></code></a></li>
 <li><a class="reference internal" href="#matpes.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-matpes.convert">matpes.convert module</a><ul>
+<li><a class="reference internal" href="#matpes.convert.EV_PER_ANG3_PER_GPA"><code class="docutils literal notranslate"><span class="pre">EV_PER_ANG3_PER_GPA</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.KBAR_TO_MATGL_GPA"><code class="docutils literal notranslate"><span class="pre">KBAR_TO_MATGL_GPA</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.MatPESLMDB"><code class="docutils literal notranslate"><span class="pre">MatPESLMDB</span></code></a><ul>
+<li><a class="reference internal" href="#matpes.convert.MatPESLMDB.get_atoms"><code class="docutils literal notranslate"><span class="pre">MatPESLMDB.get_atoms()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.MatPESLMDB.get_structure"><code class="docutils literal notranslate"><span class="pre">MatPESLMDB.get_structure()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#matpes.convert.iter_atoms"><code class="docutils literal notranslate"><span class="pre">iter_atoms()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.iter_structures"><code class="docutils literal notranslate"><span class="pre">iter_structures()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.row_to_atoms"><code class="docutils literal notranslate"><span class="pre">row_to_atoms()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.row_to_structure"><code class="docutils literal notranslate"><span class="pre">row_to_structure()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.to_atoms"><code class="docutils literal notranslate"><span class="pre">to_atoms()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.to_lmdb"><code class="docutils literal notranslate"><span class="pre">to_lmdb()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.to_mgl_dataset"><code class="docutils literal notranslate"><span class="pre">to_mgl_dataset()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.to_structures"><code class="docutils literal notranslate"><span class="pre">to_structures()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.convert.write_mgl_shards"><code class="docutils literal notranslate"><span class="pre">write_mgl_shards()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-matpes.data">matpes.data module</a><ul>
+<li><a class="reference internal" href="#matpes.data.JSONL_VERSIONS"><code class="docutils literal notranslate"><span class="pre">JSONL_VERSIONS</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.LATEST_VERSION"><code class="docutils literal notranslate"><span class="pre">LATEST_VERSION</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.PARQUET_VERSIONS"><code class="docutils literal notranslate"><span class="pre">PARQUET_VERSIONS</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.SPLITS"><code class="docutils literal notranslate"><span class="pre">SPLITS</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.Split"><code class="docutils literal notranslate"><span class="pre">Split</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.download"><code class="docutils literal notranslate"><span class="pre">download()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.get_atom_energies"><code class="docutils literal notranslate"><span class="pre">get_atom_energies()</span></code></a></li>
 <li><a class="reference internal" href="#matpes.data.get_data"><code class="docutils literal notranslate"><span class="pre">get_data()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.get_repo_files"><code class="docutils literal notranslate"><span class="pre">get_repo_files()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.get_revision"><code class="docutils literal notranslate"><span class="pre">get_revision()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.data.load_records"><code class="docutils literal notranslate"><span class="pre">load_records()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-matpes.db">matpes.db module</a><ul>
@@ -66,7 +96,27 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-matpes">Module contents</a></li>
+<li><a class="reference internal" href="#module-matpes.parquet">matpes.parquet module</a><ul>
+<li><a class="reference internal" href="#matpes.parquet.METADATA_KEY"><code class="docutils literal notranslate"><span class="pre">METADATA_KEY</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.SCHEMA"><code class="docutils literal notranslate"><span class="pre">SCHEMA</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.batch_to_rows"><code class="docutils literal notranslate"><span class="pre">batch_to_rows()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.is_parquet"><code class="docutils literal notranslate"><span class="pre">is_parquet()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.iter_batches"><code class="docutils literal notranslate"><span class="pre">iter_batches()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.iter_rows"><code class="docutils literal notranslate"><span class="pre">iter_rows()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.jsonl_to_parquet"><code class="docutils literal notranslate"><span class="pre">jsonl_to_parquet()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.parquet_files"><code class="docutils literal notranslate"><span class="pre">parquet_files()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.read_metadata"><code class="docutils literal notranslate"><span class="pre">read_metadata()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.read_table"><code class="docutils literal notranslate"><span class="pre">read_table()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.record_to_row"><code class="docutils literal notranslate"><span class="pre">record_to_row()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.row_to_record"><code class="docutils literal notranslate"><span class="pre">row_to_record()</span></code></a></li>
+<li><a class="reference internal" href="#matpes.parquet.write_parquet"><code class="docutils literal notranslate"><span class="pre">write_parquet()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-matpes">Module contents</a><ul>
+<li><a class="reference internal" href="#matpes.MATPES_HF"><code class="docutils literal notranslate"><span class="pre">MATPES_HF</span></code></a></li>
+<li><a class="reference internal" href="#matpes.MATPES_SRC"><code class="docutils literal notranslate"><span class="pre">MATPES_SRC</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -107,34 +157,35 @@
 - Download functionality to fetch data related to specific functionals using the <cite>download</cite> command.
 - Data processing capabilities using the <cite>data</cite> command, including filtering MatPES data by</p>
 <blockquote>
-<div><p>chemical systems or formulas.</p>
+<div><p>chemical systems or formulas. Both JSONL and Parquet files are supported.</p>
 </div></blockquote>
+<ul class="simple">
+<li><p>Conversion of JSONL files to the flat Parquet format using the <cite>convert</cite> command.</p></li>
+</ul>
 <p>The commands are structured as subcommands, facilitating distinct functionalities for
 data retrieval and post-processing operations.</p>
 <dl class="py function">
+<dt class="sig sig-object py" id="matpes.cli.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/cli.py#L113-L118"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.cli.convert" title="Link to this definition"></a></dt>
+<dd><p>Convert MatPES JSONL files into the flat Parquet format (see <a class="reference internal" href="#module-matpes.parquet" title="matpes.parquet"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matpes.parquet</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="matpes.cli.download">
-<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/cli.py#L24-L42"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.cli.download" title="Link to this definition"></a></dt>
-<dd><p>Function to download data based on the given functional argument.</p>
-<p>This function utilizes the “get_data” method with an input argument
-to fetch and download data tied to the specified functionality. After
-successful execution, it outputs a confirmation message.</p>
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/cli.py#L28-L37"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.cli.download" title="Link to this definition"></a></dt>
+<dd><p>Download a MatPES dataset and its atomic reference energies, and print where they are.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>args</strong> (<em>argparse.Namespace</em>) – Argument namespace that must contain a “functional” attribute.</p></li>
-<li><p><strong>Raises</strong></p></li>
-<li><p><strong>------</strong></p></li>
-<li><p><strong>None</strong></p></li>
-</ul>
+<dd class="field-odd"><p><strong>args</strong> – Namespace with <code class="docutils literal notranslate"><span class="pre">functional</span></code>, <code class="docutils literal notranslate"><span class="pre">version</span></code>, <code class="docutils literal notranslate"><span class="pre">split</span></code> and <code class="docutils literal notranslate"><span class="pre">format</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="matpes.cli.get_data_subset">
-<span class="sig-name descname"><span class="pre">get_data_subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/cli.py#L45-L94"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.cli.get_data_subset" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_data_subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/cli.py#L40-L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.cli.get_data_subset" title="Link to this definition"></a></dt>
 <dd><p>Filter MatPES data by chemical system or formula.</p>
-<p>This function processes a given JSON file containing MatPES data and filters
+<p>This function processes a given JSONL file containing MatPES data and filters
 the entries based on chemical systems or formulas specified by the user.
 The filtered results are then written to an output file.</p>
 <dl class="field-list simple">
@@ -151,7 +202,7 @@ the first entry is used).</p>
 </li>
 <li><dl class="simple">
 <dt>outfile: str</dt><dd><p>Name of the output file to write the filtered results to.
-Defaults to ‘filtered.json.gz’.</p>
+Defaults to ‘filtered.parquet’.</p>
 </dd>
 </dl>
 </li>
@@ -180,48 +231,385 @@ no filtering by formula is applied.</p>
 <li><p>The chemical system string should follow the format ‘Element1-Element2-…’.</p></li>
 <li><p>Formulas are case-insensitive and automatically converted to their
 reduced forms for comparison.</p></li>
-<li><p>The input file must be a JSON file and the output is written in
-compressed JSON format.</p></li>
+<li><p>Multiple chemical systems or formulas are combined with OR; chemsys and formula filters with AND.</p></li>
+<li><p>Input and output can be JSONL (<code class="docutils literal notranslate"><span class="pre">zopen</span></code> handles gzip by extension) or Parquet, chosen by suffix.
+JSONL input can be written as Parquet, but not vice versa.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="matpes.cli.main">
-<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/cli.py#L97-L166"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.cli.main" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/cli.py#L121-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.cli.main" title="Link to this definition"></a></dt>
 <dd><p>Main entry point for matpes cli.</p>
+</dd></dl>
+
+</section>
+<section id="module-matpes.convert">
+<span id="matpes-convert-module"></span><h2>matpes.convert module<a class="headerlink" href="#module-matpes.convert" title="Link to this heading"></a></h2>
+<p>Convert MatPES data into pymatgen Structures, ASE Atoms, MatGL datasets and LMDB databases.</p>
+<p>All functions accept a MatPES Parquet file, a legacy <code class="docutils literal notranslate"><span class="pre">.jsonl</span></code>/<code class="docutils literal notranslate"><span class="pre">.jsonl.gz</span></code> file or an in-memory
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>, and optional column <code class="docutils literal notranslate"><span class="pre">filters</span></code> (see <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_batches()</span></code></a>). For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow.compute</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matpes.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_structures</span><span class="p">,</span> <span class="n">to_mgl_dataset</span>
+
+<span class="n">structures</span> <span class="o">=</span> <span class="n">to_structures</span><span class="p">(</span><span class="s2">"MatPES-R2SCAN-2025.3.parquet"</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">"chemsys"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Li-O"</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">to_mgl_dataset</span><span class="p">(</span><span class="s2">"MatPES-R2SCAN-2025.3-train.parquet"</span><span class="p">,</span> <span class="n">include_stress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Optional dependencies: <code class="docutils literal notranslate"><span class="pre">ase</span></code> for <a class="reference internal" href="#matpes.convert.row_to_atoms" title="matpes.convert.row_to_atoms"><code class="xref py py-func docutils literal notranslate"><span class="pre">row_to_atoms()</span></code></a>, <code class="docutils literal notranslate"><span class="pre">matgl</span></code> for the MatGL helpers and <code class="docutils literal notranslate"><span class="pre">lmdb</span></code> for the LMDB
+helpers (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;matpes[ase,matgl,lmdb]&quot;</span></code>).</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.convert.EV_PER_ANG3_PER_GPA">
+<span class="sig-name descname"><span class="pre">EV_PER_ANG3_PER_GPA</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.006241509125883258</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/convert.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.EV_PER_ANG3_PER_GPA" title="Link to this definition"></a></dt>
+<dd><p>1 GPa in eV/Å^3.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.convert.KBAR_TO_MATGL_GPA">
+<span class="sig-name descname"><span class="pre">KBAR_TO_MATGL_GPA</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-0.1</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/convert.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.KBAR_TO_MATGL_GPA" title="Link to this definition"></a></dt>
+<dd><p>Factor converting raw VASP stress (kbar, compressive positive) to MatGL’s GPa, compressive negative.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="matpes.convert.MatPESLMDB">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MatPESLMDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L362-L415"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.MatPESLMDB" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Random-access reader for an LMDB written by <a class="reference internal" href="#matpes.convert.to_lmdb" title="matpes.convert.to_lmdb"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_lmdb()</span></code></a>.</p>
+<p>Behaves as a sequence of row dicts and is safe to use as a map-style PyTorch dataset with multiple <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>
+workers: the environment is opened lazily in each process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – LMDB file written by <a class="reference internal" href="#matpes.convert.to_lmdb" title="matpes.convert.to_lmdb"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_lmdb()</span></code></a>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="matpes.convert.MatPESLMDB.get_atoms">
+<span class="sig-name descname"><span class="pre">get_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Atoms</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L413-L415"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.MatPESLMDB.get_atoms" title="Link to this definition"></a></dt>
+<dd><p>Return entry <code class="docutils literal notranslate"><span class="pre">idx</span></code> as an ASE Atoms object with attached PES labels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="matpes.convert.MatPESLMDB.get_structure">
+<span class="sig-name descname"><span class="pre">get_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Structure</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L409-L411"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.MatPESLMDB.get_structure" title="Link to this definition"></a></dt>
+<dd><p>Return entry <code class="docutils literal notranslate"><span class="pre">idx</span></code> as a pymatgen Structure.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.iter_atoms">
+<span class="sig-name descname"><span class="pre">iter_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Atoms</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L148-L151"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.iter_atoms" title="Link to this definition"></a></dt>
+<dd><p>Lazily yield ASE Atoms with attached PES labels from a MatPES dataset. See <a class="reference internal" href="#matpes.convert.row_to_atoms" title="matpes.convert.row_to_atoms"><code class="xref py py-func docutils literal notranslate"><span class="pre">row_to_atoms()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.iter_structures">
+<span class="sig-name descname"><span class="pre">iter_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Structure</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L129-L132"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.iter_structures" title="Link to this definition"></a></dt>
+<dd><p>Lazily yield pymatgen Structures (with <code class="docutils literal notranslate"><span class="pre">magmom</span></code> site properties) from a MatPES dataset.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.row_to_atoms">
+<span class="sig-name descname"><span class="pre">row_to_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Atoms</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L86-L122"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.row_to_atoms" title="Link to this definition"></a></dt>
+<dd><p>Build an ASE Atoms object from a MatPES row.</p>
+<p>If the row has PES labels, they are attached through a <code class="xref py py-class docutils literal notranslate"><span class="pre">SinglePointCalculator</span></code>
+in ASE units and sign convention: energy (eV), forces (eV/Å), stress (eV/Å^3, Voigt, tensile positive, i.e. the raw
+VASP kbar value times -0.1 GPa) and magmoms (μB). Scalar metadata (<code class="docutils literal notranslate"><span class="pre">matpes_id</span></code>, <code class="docutils literal notranslate"><span class="pre">functional</span></code>, <code class="docutils literal notranslate"><span class="pre">mp_id</span></code>, …)
+present in the row go into <code class="docutils literal notranslate"><span class="pre">atoms.info</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>row</strong> – Row dict from <a class="reference internal" href="#matpes.parquet.iter_rows" title="matpes.parquet.iter_rows"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_rows()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ase.Atoms.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.row_to_structure">
+<span class="sig-name descname"><span class="pre">row_to_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Structure</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L63-L83"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.row_to_structure" title="Link to this definition"></a></dt>
+<dd><p>Build a pymatgen Structure from a MatPES row.</p>
+<p>Site magnetic moments, when present, are stored as the <code class="docutils literal notranslate"><span class="pre">magmom</span></code> site property.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>row</strong> – Row dict from <a class="reference internal" href="#matpes.parquet.iter_rows" title="matpes.parquet.iter_rows"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_rows()</span></code></a> (needs <code class="docutils literal notranslate"><span class="pre">lattice</span></code>, <code class="docutils literal notranslate"><span class="pre">species</span></code> and <code class="docutils literal notranslate"><span class="pre">positions</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.to_atoms">
+<span class="sig-name descname"><span class="pre">to_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Atoms</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L154-L164"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.to_atoms" title="Link to this definition"></a></dt>
+<dd><p>Load ASE Atoms with attached PES labels from a MatPES dataset. See <a class="reference internal" href="#matpes.convert.row_to_atoms" title="matpes.convert.row_to_atoms"><code class="xref py py-func docutils literal notranslate"><span class="pre">row_to_atoms()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Parquet or JSONL path, or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>filters</strong> – Row filter. See <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_batches()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of Atoms, in file order.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.to_lmdb">
+<span class="sig-name descname"><span class="pre">to_lmdb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1099511627776</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commit_every</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L303-L351"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.to_lmdb" title="Link to this definition"></a></dt>
+<dd><p>Write a MatPES dataset to a single-file LMDB database for fast random access during training.</p>
+<p>Layout: key <code class="docutils literal notranslate"><span class="pre">str(i).encode()</span></code> for <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(n)</span></code> maps to a pickled row dict (numpy arrays for numeric per-atom
+columns, as from <a class="reference internal" href="#matpes.parquet.iter_rows" title="matpes.parquet.iter_rows"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_rows()</span></code></a>); <code class="docutils literal notranslate"><span class="pre">b&quot;__len__&quot;</span></code> holds <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">b&quot;__metadata__&quot;</span></code> a JSON
+description. Read it back with <a class="reference internal" href="#matpes.convert.MatPESLMDB" title="matpes.convert.MatPESLMDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatPESLMDB</span></code></a>. As with any pickle-based store, only open LMDB files from
+trusted sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Parquet or JSONL path, or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>path</strong> – Output LMDB file. Must not exist.</p></li>
+<li><p><strong>filters</strong> – Row filter. See <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_batches()</span></code></a>.</p></li>
+<li><p><strong>columns</strong> – Columns to store. Defaults to all.</p></li>
+<li><p><strong>map_size</strong> – Maximum database size in bytes. Sparse on Linux/macOS, so the 1 TiB default costs nothing.</p></li>
+<li><p><strong>commit_every</strong> – Rows per write transaction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of rows written.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.to_mgl_dataset">
+<span class="sig-name descname"><span class="pre">to_mgl_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_stress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_charges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ChargesSource</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_magmoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">MagmomsSource</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L201-L247"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.to_mgl_dataset" title="Link to this definition"></a></dt>
+<dd><p>Build an in-memory <code class="xref py py-class docutils literal notranslate"><span class="pre">matgl.graph.data.MGLDataset</span></code> for PES training from a MatPES dataset.</p>
+<p>Labels follow MatGL conventions: <code class="docutils literal notranslate"><span class="pre">energies</span></code> (eV), <code class="docutils literal notranslate"><span class="pre">forces</span></code> (eV/Å), <code class="docutils literal notranslate"><span class="pre">stresses</span></code> (Voigt, GPa, compressive
+negative, i.e. raw VASP kbar times -0.1), and optionally per-atom <code class="docutils literal notranslate"><span class="pre">charges</span></code> and <code class="docutils literal notranslate"><span class="pre">magmoms</span></code>. Rows where a
+requested optional label is null (failed charge analysis) are skipped. For the full dataset, prefer
+<a class="reference internal" href="#matpes.convert.write_mgl_shards" title="matpes.convert.write_mgl_shards"><code class="xref py py-func docutils literal notranslate"><span class="pre">write_mgl_shards()</span></code></a>, which streams to disk with constant memory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Parquet or JSONL path, or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>filters</strong> – Row filter. See <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_batches()</span></code></a>.</p></li>
+<li><p><strong>converter</strong> – MatGL graph converter. Defaults to <code class="docutils literal notranslate"><span class="pre">Structure2Graph(DEFAULT_ELEMENTS,</span> <span class="pre">cutoff)</span></code>. When fine-tuning,
+the element list must match <code class="docutils literal notranslate"><span class="pre">model.element_types</span></code>.</p></li>
+<li><p><strong>cutoff</strong> – Graph cutoff radius (Å) for the default converter.</p></li>
+<li><p><strong>element_types</strong> – Element list for the default converter. Defaults to <code class="docutils literal notranslate"><span class="pre">matgl.config.DEFAULT_ELEMENTS</span></code>.</p></li>
+<li><p><strong>include_stress</strong> – Whether to include <code class="docutils literal notranslate"><span class="pre">stresses</span></code>.</p></li>
+<li><p><strong>include_charges</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;ddec6&quot;</span></code> (DDEC6 net charges), <code class="docutils literal notranslate"><span class="pre">&quot;bader&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;cm5&quot;</span></code> to add <code class="docutils literal notranslate"><span class="pre">charges</span></code>.</p></li>
+<li><p><strong>include_magmoms</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;ddec6&quot;</span></code> (DDEC6 spin moments), <code class="docutils literal notranslate"><span class="pre">&quot;bader&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;vasp&quot;</span></code> to add <code class="docutils literal notranslate"><span class="pre">magmoms</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> – Passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">MGLDataset</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">root</span></code>, <code class="docutils literal notranslate"><span class="pre">include_line_graph</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>matgl.graph.data.MGLDataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.to_structures">
+<span class="sig-name descname"><span class="pre">to_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Structure</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L135-L145"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.to_structures" title="Link to this definition"></a></dt>
+<dd><p>Load pymatgen Structures from a MatPES dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Parquet or JSONL path, or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>filters</strong> – Row filter. See <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_batches()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of Structures, in file order.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.convert.write_mgl_shards">
+<span class="sig-name descname"><span class="pre">write_mgl_shards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_stress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_charges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ChargesSource</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_magmoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">MagmomsSource</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shard_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/convert.py#L250-L296"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.convert.write_mgl_shards" title="Link to this definition"></a></dt>
+<dd><p>Stream a MatPES dataset into on-disk MatGL graph shards, readable with <code class="xref py py-class docutils literal notranslate"><span class="pre">matgl.graph.data.MGLDiskDataset</span></code>.</p>
+<p>Memory use is bounded by <code class="docutils literal notranslate"><span class="pre">shard_size</span></code> regardless of dataset size. Labels are as in <a class="reference internal" href="#matpes.convert.to_mgl_dataset" title="matpes.convert.to_mgl_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_mgl_dataset()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Parquet or JSONL path, or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>root</strong> – Output directory.</p></li>
+<li><p><strong>filters</strong> – Row filter. See <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.iter_batches()</span></code></a>.</p></li>
+<li><p><strong>converter</strong> – MatGL graph converter. See <a class="reference internal" href="#matpes.convert.to_mgl_dataset" title="matpes.convert.to_mgl_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_mgl_dataset()</span></code></a>.</p></li>
+<li><p><strong>cutoff</strong> – Graph cutoff radius (Å) for the default converter.</p></li>
+<li><p><strong>element_types</strong> – Element list for the default converter.</p></li>
+<li><p><strong>include_stress</strong> – Whether to include <code class="docutils literal notranslate"><span class="pre">stresses</span></code>.</p></li>
+<li><p><strong>include_charges</strong> – See <a class="reference internal" href="#matpes.convert.to_mgl_dataset" title="matpes.convert.to_mgl_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_mgl_dataset()</span></code></a>.</p></li>
+<li><p><strong>include_magmoms</strong> – See <a class="reference internal" href="#matpes.convert.to_mgl_dataset" title="matpes.convert.to_mgl_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_mgl_dataset()</span></code></a>.</p></li>
+<li><p><strong>shard_size</strong> – Structures per shard.</p></li>
+<li><p><strong>**kwargs</strong> – Passed to <code class="xref py py-func docutils literal notranslate"><span class="pre">matgl.graph.data.write_mgl_shards()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Path to <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
 <section id="module-matpes.data">
 <span id="matpes-data-module"></span><h2>matpes.data module<a class="headerlink" href="#module-matpes.data" title="Link to this heading"></a></h2>
 <p>Methods for working with MatPES data downloads.</p>
+<p>Layout of the Hugging Face dataset repository (<code class="docutils literal notranslate"><span class="pre">materialyze/matpes</span></code>). Each release is a git tag (<code class="docutils literal notranslate"><span class="pre">v2025.3</span></code>, …);
+<code class="docutils literal notranslate"><span class="pre">main</span></code> holds only the latest release, as Parquet:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pbe/{train,validation,test}.parquet</span></code> and <code class="docutils literal notranslate"><span class="pre">r2scan/{train,validation,test}.parquet</span></code>: the dataset as a random
+90/5/5 split. The full dataset is the union of the three files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">atoms/{pbe,r2scan}.parquet</span></code>: isolated-atom reference energies.</p></li>
+</ul>
+<p>Releases before 2025.3 are only available as JSONL, with flat file names such as
+<code class="docutils literal notranslate"><span class="pre">MatPES-PBE-2025.2[-train|-valid|-test].jsonl</span></code>, at their own tags. <a class="reference internal" href="#matpes.data.download" title="matpes.data.download"><code class="xref py py-func docutils literal notranslate"><span class="pre">download()</span></code></a> resolves the right revision and
+files.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.data.JSONL_VERSIONS">
+<span class="sig-name descname"><span class="pre">JSONL_VERSIONS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('2025.1',</span> <span class="pre">'2025.2')</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/data.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.JSONL_VERSIONS" title="Link to this definition"></a></dt>
+<dd><p>Releases distributed as JSONL (flat file names, at their own tags).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.data.LATEST_VERSION">
+<span class="sig-name descname"><span class="pre">LATEST_VERSION</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'2025.3'</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/data.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.LATEST_VERSION" title="Link to this definition"></a></dt>
+<dd><p>Latest MatPES release.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.data.PARQUET_VERSIONS">
+<span class="sig-name descname"><span class="pre">PARQUET_VERSIONS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('2025.3',)</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/data.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.PARQUET_VERSIONS" title="Link to this definition"></a></dt>
+<dd><p>Releases distributed as Parquet (directory layout). Earlier releases are JSONL only.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.data.SPLITS">
+<span class="sig-name descname"><span class="pre">SPLITS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('train',</span> <span class="pre">'validation',</span> <span class="pre">'test')</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/data.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.SPLITS" title="Link to this definition"></a></dt>
+<dd><p>Splits of the Parquet releases, in the order the full dataset is assembled.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="matpes.data.Split">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Split</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'train'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'valid'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'validation'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'test'</span></span><span class="p"><span class="pre">]</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/data.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.Split" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py function">
-<dt class="sig sig-object py" id="matpes.data.get_data">
-<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PBE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'R2SCAN'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PBE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2025.2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_entries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/data.py#L16-L69"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.get_data" title="Link to this definition"></a></dt>
-<dd><p>Downloads and reads a JSON dataset file if not already present locally. The file
-is expected to be hosted at a remote location, and the function will use the
-specified functional and version to construct the file name. If the file is
-not found locally, it will attempt to download the file, save it locally in
-compressed format, and then load its contents.</p>
+<dt class="sig sig-object py" id="matpes.data.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PBE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2025.3'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#matpes.data.Split" title="matpes.data.Split"><span class="pre">Split</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'jsonl'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'parquet'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'parquet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/data.py#L107-L135"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.download" title="Link to this definition"></a></dt>
+<dd><p>Download a MatPES dataset from Hugging Face (cached) and return its local path.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>functional</strong> (<em>str</em>) – The functional type used for labeling the dataset.
-Defaults to “PBE”.</p></li>
-<li><p><strong>version</strong> (<em>str</em>) – The version string for the dataset. Defaults to “2025.2”.</p></li>
-<li><p><strong>return_entries</strong> (<em>bool</em>) – Whether to return the deserialized entries from JSON or not. Defaults to True.</p></li>
-<li><p><strong>download_atoms</strong> (<em>bool</em>) – Whether to download the atomic reference file.</p></li>
+<li><p><strong>functional</strong> – “PBE” or “R2SCAN”.</p></li>
+<li><p><strong>version</strong> – Release.</p></li>
+<li><p><strong>split</strong> – Optional “train”, “valid”/”validation” or “test” split.</p></li>
+<li><p><strong>atoms</strong> – Download the isolated-atom reference energies instead.</p></li>
+<li><p><strong>fmt</strong> – “parquet” (default; quietly falls back to JSONL for releases without Parquet files) or “jsonl”.</p></li>
+<li><p><strong>local_dir</strong> – Optional directory to place the files in. Defaults to the Hugging Face cache.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary representation of the JSON dataset contents.</p>
+<dd class="field-even"><p>Local path. For the full dataset of a Parquet release this is the directory holding the train, validation and
+test files, which every reader in <a class="reference internal" href="#module-matpes.parquet" title="matpes.parquet"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matpes.parquet</span></code></a> and <a class="reference internal" href="#module-matpes.convert" title="matpes.convert"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matpes.convert</span></code></a> accepts. Otherwise it is
+the single downloaded file.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.data.get_atom_energies">
+<span class="sig-name descname"><span class="pre">get_atom_energies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PBE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'R2SCAN'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PBE'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/data.py#L213-L223"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.get_atom_energies" title="Link to this definition"></a></dt>
+<dd><p>Return the isolated-atom reference energies (eV) computed with MatPES settings, keyed by element symbol.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>functional</strong> – “PBE” or “R2SCAN”.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>RuntimeError</strong> – If the file download fails or the remote source is
-    inaccessible.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict of element symbol to energy.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.data.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'PBE'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'R2SCAN'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PBE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2025.3'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'jsonl'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'parquet'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'parquet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#matpes.data.Split" title="matpes.data.Split"><span class="pre">Split</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/data.py#L167-L210"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.get_data" title="Link to this definition"></a></dt>
+<dd><p>Download and load a MatPES dataset as a list of record dicts, each with a serialized pymatgen <code class="docutils literal notranslate"><span class="pre">structure</span></code>.</p>
+<p>The return value has the same layout as in matpes &lt;= 0.0.3 whichever file format is downloaded:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt=&quot;parquet&quot;</span></code> (default): downloads the Parquet files and rebuilds the records from them (see
+<a class="reference internal" href="#matpes.parquet.row_to_record" title="matpes.parquet.row_to_record"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.row_to_record()</span></code></a>; derived fields such as <code class="docutils literal notranslate"><span class="pre">symmetry</span></code> are not regenerated). The full dataset
+is returned in train, validation, test order. Releases without Parquet files quietly fall back to JSONL.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt=&quot;jsonl&quot;</span></code>: downloads the JSONL file and returns its records verbatim (2025.1 and 2025.2 only).</p></li>
+</ul>
+<p>For columnar access, which is much faster and lighter on memory, use the Parquet files directly, e.g.,
+<code class="docutils literal notranslate"><span class="pre">matpes.parquet.read_table(download(...))</span></code> or the helpers in <a class="reference internal" href="#module-matpes.convert" title="matpes.convert"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matpes.convert</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>functional</strong> – “PBE” or “R2SCAN”. Defaults to “PBE”.</p></li>
+<li><p><strong>version</strong> – Release. Defaults to <a class="reference internal" href="#matpes.data.LATEST_VERSION" title="matpes.data.LATEST_VERSION"><code class="xref py py-data docutils literal notranslate"><span class="pre">LATEST_VERSION</span></code></a>.</p></li>
+<li><p><strong>return_data</strong> – Whether to load and return the data. If False, the files are only downloaded.</p></li>
+<li><p><strong>download_atoms</strong> – Whether to also download and return the isolated-atom reference energies.</p></li>
+<li><p><strong>fmt</strong> – “parquet” (default) or “jsonl”.</p></li>
+<li><p><strong>split</strong> – Optional “train”, “valid”/”validation” or “test” split instead of the full dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataset, or a tuple of (dataset, atomic reference energies) if <code class="docutils literal notranslate"><span class="pre">download_atoms</span></code> is True. None if
+<code class="docutils literal notranslate"><span class="pre">return_data</span></code> is False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.data.get_repo_files">
+<span class="sig-name descname"><span class="pre">get_repo_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PBE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2025.3'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#matpes.data.Split" title="matpes.data.Split"><span class="pre">Split</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'jsonl'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'parquet'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'parquet'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/data.py#L58-L104"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.get_repo_files" title="Link to this definition"></a></dt>
+<dd><p>Return the Hugging Face revision and file paths that make up a MatPES dataset.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">fmt=&quot;parquet&quot;</span></code> (default), releases in <a class="reference internal" href="#matpes.data.PARQUET_VERSIONS" title="matpes.data.PARQUET_VERSIONS"><code class="xref py py-data docutils literal notranslate"><span class="pre">PARQUET_VERSIONS</span></code></a> and the atomic reference energies resolve to
+Parquet files, and earlier releases quietly fall back to their JSONL files. <code class="docutils literal notranslate"><span class="pre">fmt=&quot;jsonl&quot;</span></code> always resolves to
+JSONL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>functional</strong> – “PBE” or “R2SCAN” (case-insensitive).</p></li>
+<li><p><strong>version</strong> – Release. For <code class="docutils literal notranslate"><span class="pre">atoms</span></code>, only selects the revision.</p></li>
+<li><p><strong>split</strong> – Optional “train”, “valid”/”validation” or “test” split (available from 2025.2 on). None for the full
+dataset, which for Parquet releases consists of all three split files.</p></li>
+<li><p><strong>atoms</strong> – Resolve the isolated-atom reference energies instead.</p></li>
+<li><p><strong>fmt</strong> – Preferred file format, “parquet” (default) or “jsonl” (2025.1 and 2025.2 only).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (revision, list of file paths in the repository).</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – For an unknown format, split or release.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.data.get_revision">
+<span class="sig-name descname"><span class="pre">get_revision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2025.3'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/data.py#L44-L46"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.get_revision" title="Link to this definition"></a></dt>
+<dd><p>Return the git tag of a MatPES release on Hugging Face, e.g., <code class="docutils literal notranslate"><span class="pre">v2025.3</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.data.load_records">
+<span class="sig-name descname"><span class="pre">load_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/data.py#L153-L164"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.data.load_records" title="Link to this definition"></a></dt>
+<dd><p>Load a MatPES Parquet file or directory, or a JSONL file, as record dicts with a pymatgen <code class="docutils literal notranslate"><span class="pre">structure</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – Parquet file, directory of Parquet files, or (optionally gzipped) JSONL file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of record dicts. For Parquet, see <a class="reference internal" href="#matpes.parquet.row_to_record" title="matpes.parquet.row_to_record"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.parquet.row_to_record()</span></code></a> for the restored fields.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -232,7 +620,7 @@ Defaults to “PBE”.</p></li>
 <p>Tools for directly working with a MatPES style DB.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="matpes.db.MatPESDB">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MatPESDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'matpes'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/db.py#L13-L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MatPESDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'matpes'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/db.py#L24-L118"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A MatPES DB object. This requires access to a MatPES style DB. Typically meant for developers.</p>
 <dl class="field-list simple">
@@ -242,19 +630,19 @@ Defaults to “PBE”.</p></li>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="matpes.db.MatPESDB.FUNCTIONALS">
-<span class="sig-name descname"><span class="pre">FUNCTIONALS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('PBE',</span> <span class="pre">'r2SCAN')</span></em><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/db.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.FUNCTIONALS" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">FUNCTIONALS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('PBE',</span> <span class="pre">'r2SCAN')</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/db.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.FUNCTIONALS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="matpes.db.MatPESDB.create_db">
-<span class="sig-name descname"><span class="pre">create_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/db.py#L31-L51"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.create_db" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/db.py#L41-L61"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.create_db" title="Link to this definition"></a></dt>
 <dd><p>Create a MatPES database from the json files.
 Note that any existing collections will be deleted.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="matpes.db.MatPESDB.get_df">
-<span class="sig-name descname"><span class="pre">get_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/db.py#L61-L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.get_df" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/db.py#L71-L118"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.get_df" title="Link to this definition"></a></dt>
 <dd><p>Retrieve a pandas DataFrame from a MongoDB collection based on the provided
 criteria and projection.</p>
 <p>This method queries a MongoDB collection corresponding to the specified
@@ -287,7 +675,7 @@ None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="matpes.db.MatPESDB.get_json">
-<span class="sig-name descname"><span class="pre">get_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.3/src/matpes/core/db.py#L53-L59"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.get_json" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/db.py#L63-L69"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.db.MatPESDB.get_json" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -301,9 +689,351 @@ None</p>
 </dd></dl>
 
 </section>
+<section id="module-matpes.parquet">
+<span id="matpes-parquet-module"></span><h2>matpes.parquet module<a class="headerlink" href="#module-matpes.parquet" title="Link to this heading"></a></h2>
+<p>Parquet format for MatPES.</p>
+<p>MatPES records are stored as flat, Arrow-native columns rather than as serialized <code class="docutils literal notranslate"><span class="pre">Structure.as_dict()</span></code> blobs, so that
+readers get columnar projection, predicate pushdown on row-group statistics, zero-copy access to numeric arrays and
+good compression. One row is one structure. The columns (units in brackets) are:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Arrow type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>matpes_id</p></td>
+<td><p>string</p></td>
+<td><p>Unique MatPES identifier (null for isolated atoms).</p></td>
+</tr>
+<tr class="row-odd"><td><p>functional</p></td>
+<td><p>string</p></td>
+<td><p>“PBE” or “r2SCAN”.</p></td>
+</tr>
+<tr class="row-even"><td><p>mp_id</p></td>
+<td><p>string</p></td>
+<td><p>Source Materials Project ID.</p></td>
+</tr>
+<tr class="row-odd"><td><p>formula_pretty</p></td>
+<td><p>string</p></td>
+<td><p>Reduced formula.</p></td>
+</tr>
+<tr class="row-even"><td><p>chemsys</p></td>
+<td><p>string</p></td>
+<td><p>Alphabetically sorted, hyphen-separated elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nsites</p></td>
+<td><p>int32</p></td>
+<td><p>Number of sites.</p></td>
+</tr>
+<tr class="row-even"><td><p>lattice</p></td>
+<td><p>fixed_size_list&lt;float64, 9&gt;</p></td>
+<td><p>Row-major 3x3 lattice matrix [Å].</p></td>
+</tr>
+<tr class="row-odd"><td><p>pbc</p></td>
+<td><p>fixed_size_list&lt;bool, 3&gt;</p></td>
+<td><p>Periodic boundary conditions.</p></td>
+</tr>
+<tr class="row-even"><td><p>species</p></td>
+<td><p>list&lt;string&gt;</p></td>
+<td><p>Element symbol of each site.</p></td>
+</tr>
+<tr class="row-odd"><td><p>positions</p></td>
+<td><p>list&lt;fixed_size_list&lt;float64, 3&gt;&gt;</p></td>
+<td><p>Cartesian coordinates [Å].</p></td>
+</tr>
+<tr class="row-even"><td><p>forces</p></td>
+<td><p>list&lt;fixed_size_list&lt;float64, 3&gt;&gt;</p></td>
+<td><p>DFT forces [eV/Å].</p></td>
+</tr>
+<tr class="row-odd"><td><p>magmoms</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>Site magnetic moments from VASP [μB].</p></td>
+</tr>
+<tr class="row-even"><td><p>energy</p></td>
+<td><p>float64</p></td>
+<td><p>DFT total energy [eV].</p></td>
+</tr>
+<tr class="row-odd"><td><p>stress</p></td>
+<td><p>fixed_size_list&lt;float64, 6&gt;</p></td>
+<td><p>DFT stress, Voigt (xx, yy, zz, yz, xz, xy), raw
+VASP convention [kbar, compressive positive].</p></td>
+</tr>
+<tr class="row-even"><td><p>bandgap</p></td>
+<td><p>float64</p></td>
+<td><p>DFT band gap [eV].</p></td>
+</tr>
+<tr class="row-odd"><td><p>cohesive_energy_per_atom</p></td>
+<td><p>float64</p></td>
+<td><p>[eV/atom].</p></td>
+</tr>
+<tr class="row-even"><td><p>formation_energy_per_atom</p></td>
+<td><p>float64</p></td>
+<td><p>[eV/atom]; null unless a relaxed ground state.</p></td>
+</tr>
+<tr class="row-odd"><td><p>bader_charges</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>Bader electron counts [e].</p></td>
+</tr>
+<tr class="row-even"><td><p>bader_magmoms</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>Bader magnetic moments [μB].</p></td>
+</tr>
+<tr class="row-odd"><td><p>cm5_partial_charges</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>CM5 partial charges [e].</p></td>
+</tr>
+<tr class="row-even"><td><p>ddec6_partial_charges</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>DDEC6 net atomic charges [e].</p></td>
+</tr>
+<tr class="row-odd"><td><p>ddec6_spin_moments</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>DDEC6 atomic spin moments [μB].</p></td>
+</tr>
+<tr class="row-even"><td><p>ddec6_bond_order_sums</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>DDEC6 bond order sums.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ddec6_dipoles</p></td>
+<td><p>list&lt;fixed_size_list&lt;float64, 3&gt;&gt;</p></td>
+<td><p>DDEC6 atomic dipoles.</p></td>
+</tr>
+<tr class="row-even"><td><p>ddec6_rsquared_moments</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>DDEC6 &lt;r^2&gt; moments [a.u.].</p></td>
+</tr>
+<tr class="row-odd"><td><p>ddec6_rcubed_moments</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>DDEC6 &lt;r^3&gt; moments [a.u.].</p></td>
+</tr>
+<tr class="row-even"><td><p>ddec6_rfourth_moments</p></td>
+<td><p>list&lt;float64&gt;</p></td>
+<td><p>DDEC6 &lt;r^4&gt; moments [a.u.].</p></td>
+</tr>
+<tr class="row-odd"><td><p>provenance</p></td>
+<td><p>struct</p></td>
+<td><p>MD provenance (original_mp_id, MP version, MD
+ensemble/temperature/pressure/step, MLIP name).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Fields of the JSONL records that are cheaply derivable from the above (<code class="docutils literal notranslate"><span class="pre">composition</span></code>, <code class="docutils literal notranslate"><span class="pre">symmetry</span></code>, <code class="docutils literal notranslate"><span class="pre">volume</span></code>,
+<code class="docutils literal notranslate"><span class="pre">density</span></code>, <code class="docutils literal notranslate"><span class="pre">abs_forces</span></code>, …) are dropped. Every function in this module that reads data accepts either a Parquet
+file or a legacy MatPES <code class="docutils literal notranslate"><span class="pre">.jsonl</span></code>/<code class="docutils literal notranslate"><span class="pre">.jsonl.gz</span></code> file; JSONL records are converted on the fly with
+<a class="reference internal" href="#matpes.parquet.record_to_row" title="matpes.parquet.record_to_row"><code class="xref py py-func docutils literal notranslate"><span class="pre">record_to_row()</span></code></a>.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.parquet.METADATA_KEY">
+<span class="sig-name descname"><span class="pre">METADATA_KEY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">b'matpes'</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/parquet.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.METADATA_KEY" title="Link to this definition"></a></dt>
+<dd><p>Key of the MatPES JSON entry in the Parquet file-level key-value metadata.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.parquet.SCHEMA">
+<span class="sig-name descname"><span class="pre">SCHEMA</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">matpes_id:</span> <span class="pre">string</span> <span class="pre">functional:</span> <span class="pre">string</span> <span class="pre">mp_id:</span> <span class="pre">string</span> <span class="pre">formula_pretty:</span> <span class="pre">string</span> <span class="pre">chemsys:</span> <span class="pre">string</span> <span class="pre">nsites:</span> <span class="pre">int32</span> <span class="pre">lattice:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[9]</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">pbc:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">bool&gt;[3]</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">bool</span> <span class="pre">species:</span> <span class="pre">list&lt;item:</span> <span class="pre">string&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">string</span> <span class="pre">positions:</span> <span class="pre">list&lt;item:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[3]&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[3]</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">forces:</span> <span class="pre">list&lt;item:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[3]&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[3]</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">magmoms:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">energy:</span> <span class="pre">double</span> <span class="pre">stress:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[6]</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">bandgap:</span> <span class="pre">double</span> <span class="pre">cohesive_energy_per_atom:</span> <span class="pre">double</span> <span class="pre">formation_energy_per_atom:</span> <span class="pre">double</span> <span class="pre">bader_charges:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">bader_magmoms:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">cm5_partial_charges:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">ddec6_partial_charges:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">ddec6_spin_moments:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">ddec6_bond_order_sums:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">ddec6_dipoles:</span> <span class="pre">list&lt;item:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[3]&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">fixed_size_list&lt;item:</span> <span class="pre">double&gt;[3]</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">ddec6_rsquared_moments:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">ddec6_rcubed_moments:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">ddec6_rfourth_moments:</span> <span class="pre">list&lt;item:</span> <span class="pre">double&gt;</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">item:</span> <span class="pre">double</span> <span class="pre">provenance:</span> <span class="pre">struct&lt;original_mp_id:</span> <span class="pre">string,</span> <span class="pre">materials_project_version:</span> <span class="pre">string,</span> <span class="pre">md_ensemble:</span> <span class="pre">string,</span> <span class="pre">md_temperatur</span> <span class="pre">(...</span> <span class="pre">66</span> <span class="pre">chars</span> <span class="pre">omitted)</span>&#160;&#160; <span class="pre">child</span> <span class="pre">0,</span> <span class="pre">original_mp_id:</span> <span class="pre">string</span>&#160;&#160; <span class="pre">child</span> <span class="pre">1,</span> <span class="pre">materials_project_version:</span> <span class="pre">string</span>&#160;&#160; <span class="pre">child</span> <span class="pre">2,</span> <span class="pre">md_ensemble:</span> <span class="pre">string</span>&#160;&#160; <span class="pre">child</span> <span class="pre">3,</span> <span class="pre">md_temperature:</span> <span class="pre">double</span>&#160;&#160; <span class="pre">child</span> <span class="pre">4,</span> <span class="pre">md_pressure:</span> <span class="pre">double</span>&#160;&#160; <span class="pre">child</span> <span class="pre">5,</span> <span class="pre">md_step:</span> <span class="pre">int64</span>&#160;&#160; <span class="pre">child</span> <span class="pre">6,</span> <span class="pre">mlip_name:</span> <span class="pre">string</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/parquet.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.SCHEMA" title="Link to this definition"></a></dt>
+<dd><p>Arrow schema of a MatPES Parquet file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.batch_to_rows">
+<span class="sig-name descname"><span class="pre">batch_to_rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RecordBatch</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Table</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L376-L413"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.batch_to_rows" title="Link to this definition"></a></dt>
+<dd><p>Convert an Arrow batch into a list of row dicts.</p>
+<p>Numeric per-atom and fixed-size columns are returned as numpy arrays (views into the Arrow buffers where
+possible): <code class="docutils literal notranslate"><span class="pre">lattice</span></code> (3, 3), <code class="docutils literal notranslate"><span class="pre">positions</span></code>/<code class="docutils literal notranslate"><span class="pre">forces</span></code>/<code class="docutils literal notranslate"><span class="pre">ddec6_dipoles</span></code> (nsites, 3), <code class="docutils literal notranslate"><span class="pre">stress</span></code> (6,), per-atom
+scalars (nsites,). Other columns are plain Python values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>batch</strong> – Record batch or table conforming to (a projection of) <a class="reference internal" href="#matpes.parquet.SCHEMA" title="matpes.parquet.SCHEMA"><code class="xref py py-data docutils literal notranslate"><span class="pre">SCHEMA</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of dicts, one per row.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.is_parquet">
+<span class="sig-name descname"><span class="pre">is_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L144-L149"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.is_parquet" title="Link to this definition"></a></dt>
+<dd><p>Whether <code class="docutils literal notranslate"><span class="pre">path</span></code> is a Parquet file (by suffix) or a directory of Parquet files.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.iter_batches">
+<span class="sig-name descname"><span class="pre">iter_batches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4096</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">pa.RecordBatch</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L296-L334"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.iter_batches" title="Link to this definition"></a></dt>
+<dd><p>Iterate over a MatPES dataset as Arrow record batches, in file order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Path to a Parquet file, a directory of Parquet files (read in <a class="reference internal" href="#matpes.parquet.parquet_files" title="matpes.parquet.parquet_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">parquet_files()</span></code></a> order), an
+(optionally gzipped) JSONL file, or an in-memory <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>columns</strong> – Columns to read. Defaults to all. For Parquet, unread columns are never decoded.</p></li>
+<li><p><strong>filters</strong> – Row filter, either a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.compute.Expression</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">pc.field(&quot;chemsys&quot;)</span> <span class="pre">==</span> <span class="pre">&quot;Fe-O&quot;</span></code>)
+or DNF tuples as accepted by <code class="xref py py-func docutils literal notranslate"><span class="pre">pyarrow.parquet.read_table()</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">[(&quot;nsites&quot;,</span> <span class="pre">&quot;&lt;&quot;,</span> <span class="pre">10)]</span></code>).
+For Parquet this prunes whole row groups using column statistics.</p></li>
+<li><p><strong>batch_size</strong> – Maximum number of rows per batch.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.RecordBatch</span></code> objects conforming to (a projection of) <a class="reference internal" href="#matpes.parquet.SCHEMA" title="matpes.parquet.SCHEMA"><code class="xref py py-data docutils literal notranslate"><span class="pre">SCHEMA</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.iter_rows">
+<span class="sig-name descname"><span class="pre">iter_rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4096</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L416-L434"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.iter_rows" title="Link to this definition"></a></dt>
+<dd><p>Iterate over a MatPES dataset row by row with constant memory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Path to a Parquet or JSONL file, or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>columns</strong> – Columns to read. Defaults to all.</p></li>
+<li><p><strong>filters</strong> – Row filter. See <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter_batches()</span></code></a>.</p></li>
+<li><p><strong>batch_size</strong> – Number of rows decoded at a time.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p>Row dicts as described in <a class="reference internal" href="#matpes.parquet.batch_to_rows" title="matpes.parquet.batch_to_rows"><code class="xref py py-func docutils literal notranslate"><span class="pre">batch_to_rows()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.jsonl_to_parquet">
+<span class="sig-name descname"><span class="pre">jsonl_to_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_group_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'zstd'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L484-L518"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.jsonl_to_parquet" title="Link to this definition"></a></dt>
+<dd><p>Convert a MatPES JSONL file into Parquet with constant memory.</p>
+<p>Row order is preserved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – Input <code class="docutils literal notranslate"><span class="pre">.jsonl</span></code> or <code class="docutils literal notranslate"><span class="pre">.jsonl.gz</span></code> file.</p></li>
+<li><p><strong>dst</strong> – Output path. Defaults to <code class="docutils literal notranslate"><span class="pre">src</span></code> with the <code class="docutils literal notranslate"><span class="pre">.jsonl[.gz]</span></code> suffix replaced by <code class="docutils literal notranslate"><span class="pre">.parquet</span></code>.</p></li>
+<li><p><strong>metadata</strong> – Extra file-level metadata. The source file name is always recorded.</p></li>
+<li><p><strong>row_group_size</strong> – Rows per row group.</p></li>
+<li><p><strong>compression</strong> – Parquet compression codec.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Path of the written Parquet file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.parquet_files">
+<span class="sig-name descname"><span class="pre">parquet_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L152-L172"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.parquet_files" title="Link to this definition"></a></dt>
+<dd><p>Return the Parquet files of a Parquet file or directory.</p>
+<p>Files in a directory are ordered train, validation, test, then any others by name, so that a directory of split
+files (as downloaded by <a class="reference internal" href="#matpes.data.download" title="matpes.data.download"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpes.data.download()</span></code></a>) reads as one dataset in a deterministic order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – Parquet file or directory.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of file paths.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.read_metadata">
+<span class="sig-name descname"><span class="pre">read_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L437-L443"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.read_metadata" title="Link to this definition"></a></dt>
+<dd><p>Read the MatPES file-level metadata (dataset version, functional, units, …) of a Parquet file or directory.</p>
+<p>For a directory, the metadata of its first file is returned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.read_table">
+<span class="sig-name descname"><span class="pre">read_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Filters</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pa.Table</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L337-L357"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.read_table" title="Link to this definition"></a></dt>
+<dd><p>Read a MatPES dataset into a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">table.to_pandas()</span></code> or <code class="docutils literal notranslate"><span class="pre">polars.from_arrow(table)</span></code> for dataframe access.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – Path to a Parquet file or directory, a JSONL file, or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>columns</strong> – Columns to read. Defaults to all.</p></li>
+<li><p><strong>filters</strong> – Row filter. See <a class="reference internal" href="#matpes.parquet.iter_batches" title="matpes.parquet.iter_batches"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter_batches()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.record_to_row">
+<span class="sig-name descname"><span class="pre">record_to_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L175-L214"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.record_to_row" title="Link to this definition"></a></dt>
+<dd><p>Convert a legacy MatPES JSON record into a flat row conforming to <a class="reference internal" href="#matpes.parquet.SCHEMA" title="matpes.parquet.SCHEMA"><code class="xref py py-data docutils literal notranslate"><span class="pre">SCHEMA</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>record</strong> – One MatPES record as found in the <code class="docutils literal notranslate"><span class="pre">.jsonl</span></code> files, i.e., with a serialized pymatgen <code class="docutils literal notranslate"><span class="pre">structure</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict keyed by <a class="reference internal" href="#matpes.parquet.SCHEMA" title="matpes.parquet.SCHEMA"><code class="xref py py-data docutils literal notranslate"><span class="pre">SCHEMA</span></code></a> column names, with plain Python values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.row_to_record">
+<span class="sig-name descname"><span class="pre">row_to_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L217-L269"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.row_to_record" title="Link to this definition"></a></dt>
+<dd><p>Convert a flat row back into a legacy-style MatPES record with a serialized <code class="docutils literal notranslate"><span class="pre">structure</span></code>.</p>
+<p>The stored fields are restored, plus the cheaply derived <code class="docutils literal notranslate"><span class="pre">elements</span></code>, <code class="docutils literal notranslate"><span class="pre">nelements</span></code>, <code class="docutils literal notranslate"><span class="pre">composition</span></code>,
+<code class="docutils literal notranslate"><span class="pre">composition_reduced</span></code>, <code class="docutils literal notranslate"><span class="pre">formula_anonymous</span></code>, <code class="docutils literal notranslate"><span class="pre">volume</span></code>, <code class="docutils literal notranslate"><span class="pre">density_atomic</span></code> and <code class="docutils literal notranslate"><span class="pre">abs_forces</span></code>. <code class="docutils literal notranslate"><span class="pre">symmetry</span></code>,
+<code class="docutils literal notranslate"><span class="pre">density</span></code> and <code class="docutils literal notranslate"><span class="pre">builder_meta</span></code> are not regenerated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>row</strong> – A row as yielded by <a class="reference internal" href="#matpes.parquet.iter_rows" title="matpes.parquet.iter_rows"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter_rows()</span></code></a> (or <a class="reference internal" href="#matpes.parquet.record_to_row" title="matpes.parquet.record_to_row"><code class="xref py py-func docutils literal notranslate"><span class="pre">record_to_row()</span></code></a>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict in the layout of a MatPES JSONL record.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="matpes.parquet.write_parquet">
+<span class="sig-name descname"><span class="pre">write_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">pa.Table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_group_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'zstd'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes/core/parquet.py#L446-L481"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.parquet.write_parquet" title="Link to this definition"></a></dt>
+<dd><p>Write rows conforming to <a class="reference internal" href="#matpes.parquet.SCHEMA" title="matpes.parquet.SCHEMA"><code class="xref py py-data docutils literal notranslate"><span class="pre">SCHEMA</span></code></a> to a Parquet file, streaming in row groups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> – Iterable of row dicts (e.g., from <a class="reference internal" href="#matpes.parquet.record_to_row" title="matpes.parquet.record_to_row"><code class="xref py py-func docutils literal notranslate"><span class="pre">record_to_row()</span></code></a>) or a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>.</p></li>
+<li><p><strong>path</strong> – Output path.</p></li>
+<li><p><strong>metadata</strong> – Extra entries for the MatPES file-level metadata (e.g., <code class="docutils literal notranslate"><span class="pre">{&quot;version&quot;:</span> <span class="pre">&quot;2025.3&quot;}</span></code>).</p></li>
+<li><p><strong>row_group_size</strong> – Rows per row group. ~10k rows keeps row groups well below the Hugging Face viewer limits
+while retaining effective statistics-based pruning.</p></li>
+<li><p><strong>compression</strong> – Parquet compression codec.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Pages are cut with content-defined chunking, so that a new release that leaves most rows unchanged shares most of
+its bytes with the previous one and Hugging Face’s deduplicating storage uploads only the changed parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of rows written.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-matpes">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-matpes" title="Link to this heading"></a></h2>
 <p>Tools for working with MatPES.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.MATPES_HF">
+<span class="sig-name descname"><span class="pre">MATPES_HF</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://huggingface.co/datasets/materialyze/matpes'</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.MATPES_HF" title="Link to this definition"></a></dt>
+<dd><p>Hugging Face page of the MatPES dataset.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="matpes.MATPES_SRC">
+<span class="sig-name descname"><span class="pre">MATPES_SRC</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://huggingface.co/datasets/materialyze/matpes/resolve/main'</span></span><a class="reference external" href="https://github.com/materialsproject/matpes/blob/v0.0.4/src/matpes.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#matpes.MATPES_SRC" title="Link to this definition"></a></dt>
+<dd><p>Base URL for downloading files from the latest MatPES release.</p>
+</dd></dl>
+
 </section>
 </section>
 
